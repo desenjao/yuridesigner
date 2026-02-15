@@ -11,474 +11,607 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Yuri Santos | Design & Edição de Vídeo</title>
     <style>
-        /* 
-            DESIGN MINIMALISTA INTELIGENTE
-            - Fundo claro para destacar as imagens do Canva
-            - Decisões sutis de CSS que complementam o design
-            - Estrutura HTML mantida (imagens são os botões)
-            - Simbiose entre programação e design visual
-        */
+       /* 
+    DESIGN MINIMALISTA INTELIGENTE
+    - Fundo claro para destacar as imagens do Canva
+    - Decisões sutis de CSS que complementam o design
+    - Estrutura HTML mantida (imagens são os botões)
+    - Simbiose entre programação e design visual
+*/
 
-        :root {
-            --fundo: #faf8f5;
-            /* Base clara e aconchegante */
-            --texto: #1a1a1a;
-            /* Quase preto para contraste suave */
-            --detalhe: #d4a5a5;
-            /* Tom terroso suave */
-            --detalhe-roxo: #a58bd4;
-            /* Roxo lavanda suave */
-            --espacamento: 40px;
-        }
+:root {
+    --fundo: #faf8f5;
+    /* Base clara e aconchegante */
+    --texto: #1a1a1a;
+    /* Quase preto para contraste suave */
+    --detalhe: #d4a5a5;
+    /* Tom terroso suave */
+    --detalhe-roxo: #a58bd4;
+    /* Roxo lavanda suave */
+    --espacamento: 40px;
+}
 
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    padding: 0;
+}
 
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: 'Inter', sans-serif;
-            color: var(--texto);
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    color: var(--texto);
 
-            /* Fundo claro com textura sutil de papel */
-            background-color: var(--fundo);
-            background-image:
-                radial-gradient(circle at 10% 20%, rgba(213, 184, 184, 0.05) 0%, transparent 30%),
-                radial-gradient(circle at 90% 80%, rgba(165, 139, 212, 0.05) 0%, transparent 40%);
-            background-attachment: fixed;
-            position: relative;
-        }
+    /* Fundo claro com textura sutil de papel */
+    background-color: var(--fundo);
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(213, 184, 184, 0.05) 0%, transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(165, 139, 212, 0.05) 0%, transparent 40%);
+    background-attachment: fixed;
+    position: relative;
+}
 
-        /* Grid sutil de fundo - referência a linhas de edição */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.02) 0px, rgba(0, 0, 0, 0.02) 1px, transparent 1px, transparent 30px),
-                repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.02) 0px, rgba(0, 0, 0, 0.02) 1px, transparent 1px, transparent 30px);
-            background-size: 30px 30px;
-            z-index: -1;
-            pointer-events: none;
-        }
+/* Grid sutil de fundo - referência a linhas de edição */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.02) 0px, rgba(0, 0, 0, 0.02) 1px, transparent 1px, transparent 30px),
+        repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.02) 0px, rgba(0, 0, 0, 0.02) 1px, transparent 1px, transparent 30px);
+    background-size: 30px 30px;
+    z-index: -1;
+    pointer-events: none;
+}
 
-        .first {
-            width: 100%;
-            min-height: 100vh;
-            /* Garante que ocupe toda a altura da tela */
-            display: flex;
-            flex-direction: column;
-            /* Coloca a imagem em cima e o texto embaixo */
-            justify-content: center;
-            /* Centraliza verticalmente se sobrar espaço */
-            align-items: center;
-            /* Centraliza horizontalmente */
-            overflow: hidden;
-            background-color: #fff;
-            /* Ou a cor de fundo do seu site */
-        }
+/* FIRST SECTION - FULLSCREEN RESPONSIVO */
+.first {
+    width: 100%;
+    height: 100vh;
+    /* Altura total da viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Distribui espaço entre os elementos */
+    align-items: center;
+    background-color: #fff;
+    overflow: hidden;
+    position: relative;
+}
 
-        /* Hero Superior */
-        .hero-top {
-            width: 100%;
-            height: 72vh;
-            position: relative;
-            overflow: hidden;
-        }
+/* Hero Superior - ocupa 70% da altura do first */
+.hero-top {
+    width: 100%;
+    flex: 0 0 70%;
+    /* 70% da altura fixa */
+    position: relative;
+    overflow: hidden;
+}
 
-        .hero-top img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-            transition: transform 0.6s ease;
-        }
+.hero-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    /* Foco no rosto */
+    transition: transform 0.6s ease;
+}
 
-        .hero-top:hover img {
-            transform: scale(1.02);
-        }
+.hero-top:hover img {
+    transform: scale(1.02);
+}
 
-        /* Seção Sobre */
-        .section-text {
-            text-align: center;
-            max-width: 500px;
-            padding: 0 20px;
-            position: relative;
-        }
+/* Seção Sobre - ocupa 30% da altura do first */
+.section-text {
+    flex: 0 0 30%;
+    /* 30% da altura fixa */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 20px;
+    position: relative;
+}
 
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.2rem;
-            margin: 30px 0 10px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--texto);
-            position: relative;
-            display: inline-block;
-        }
+/* Ajustes responsivos para diferentes alturas de tela */
+@media screen and (max-height: 700px) {
+    .hero-top {
+        flex: 0 0 65%;
+        /* Reduz um pouco em telas mais baixas */
+    }
 
-        /* Linha decorativa sutil no H1 */
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 25%;
-            width: 50%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--detalhe-roxo), var(--detalhe), transparent);
-        }
+    .section-text {
+        flex: 0 0 35%;
+        padding: 10px 20px;
+    }
 
-        .description {
-            font-size: 1rem;
-            line-height: 1.8;
-            font-weight: 300;
-            color: #4a4a4a;
-            margin: 25px 0 15px;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    h1 {
+        font-size: 2rem;
+        margin: 5px 0;
+    }
 
-        /* Divisor minimalista */
-        .divider {
-            width: 40px;
-            height: 2px;
-            background: var(--detalhe);
-            margin: 25px auto;
-            opacity: 0.3;
-        }
+    .description {
+        font-size: 0.9rem;
+        margin: 10px 0;
+        line-height: 1.5;
+    }
 
-        /* Seta animada */
-        .scroll-icon {
-            color: var(--detalhe-roxo);
-            font-size: 1.4rem;
-            opacity: 0.6;
-            animation: bounce 2s infinite;
-            display: inline-block;
-            margin: 10px 0;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
+    .scroll-icon {
+        margin: 0;
+    }
 
-        .scroll-icon:hover {
-            opacity: 1;
-        }
+    .divider {
+        margin: 10px auto;
+    }
+}
 
-        @keyframes bounce {
+@media screen and (max-height: 500px) {
+    .hero-top {
+        flex: 0 0 60%;
+    }
 
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateY(0);
-            }
+    .section-text {
+        flex: 0 0 40%;
+    }
 
-            40% {
-                transform: translateY(-8px);
-            }
+    h1 {
+        font-size: 1.8rem;
+        margin: 0;
+    }
 
-            60% {
-                transform: translateY(-4px);
-            }
-        }
+    .description {
+        font-size: 0.85rem;
+        margin: 5px 0;
+    }
 
-        /* Grid de Botões/Cards - IMAGENS SÃO OS BOTÕES */
-        .buttons-grid {
-            width: 90%;
-            max-width: 450px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin: 30px 0;
-        }
+    .scroll-icon {
+        font-size: 1.2rem;
+        margin: 0;
+    }
 
-        /* Cards com efeito suave - as imagens do Canva são o destaque */
-        .btn-card {
-            width: 100%;
-            border-radius: 24px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
-            border: 1px solid rgba(213, 184, 184, 0.2);
-            background: white;
-        }
+    .divider {
+        margin: 5px auto;
+    }
+}
 
-        .btn-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 25px 40px rgba(165, 139, 212, 0.1);
-            border-color: rgba(165, 139, 212, 0.3);
-        }
+@media screen and (max-height: 400px) {
+    .hero-top {
+        flex: 0 0 55%;
+    }
 
-        .btn-card:active {
-            transform: translateY(-2px);
-        }
+    .section-text {
+        flex: 0 0 45%;
+    }
+}
 
-        .btn-card img {
-            width: 100%;
-            display: block;
-            transition: transform 0.5s ease;
-        }
+/* Ajustes para telas muito largas */
+@media screen and (min-width: 1200px) {
+    .hero-top {
+        max-height: 800px;
+        /* Limita altura máxima em telas muito grandes */
+    }
 
-        .btn-card:hover img {
-            transform: scale(1.02);
-        }
+    .first {
+        max-height: 1000px;
+    }
+}
 
-        /* Chamada para Ação - Clean */
-        .cta-box {
-            text-align: center;
-            padding: 50px 30px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(5px);
-            border-top: 1px solid rgba(165, 139, 212, 0.2);
-            border-bottom: 1px solid rgba(165, 139, 212, 0.2);
-        }
+/* Ajustes para orientação paisagem em mobile */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .first {
+        height: auto;
+        min-height: 100vh;
+        flex-direction: row;
+        /* Layout horizontal em landscape */
+    }
 
-        .cta-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-            color: var(--texto);
-            font-weight: 400;
-            letter-spacing: 1px;
-        }
+    .hero-top {
+        flex: 0 0 50%;
+        height: 100vh;
+    }
 
-        /* FAQ Section - NOVA */
-        .faq-section {
-            width: 90%;
-            max-width: 600px;
-            margin: 50px 0;
-            padding: 0 20px;
-        }
+    .section-text {
+        flex: 0 0 50%;
+        height: 100vh;
+        padding: 20px;
+    }
 
-        .faq-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--texto);
-            letter-spacing: 1px;
-        }
+    h1 {
+        font-size: 1.8rem;
+        margin: 10px 0;
+    }
 
-        .faq-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+    .description {
+        font-size: 0.9rem;
+        margin: 10px 0;
+    }
 
-        .faq-item {
-            background: white;
-            border-radius: 20px;
-            padding: 5px 20px;
-            border: 1px solid rgba(165, 139, 212, 0.15);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
-            transition: all 0.3s;
-        }
+    .scroll-icon {
+        margin: 5px 0;
+    }
+}
 
-        .faq-item:hover {
-            border-color: rgba(165, 139, 212, 0.4);
-            box-shadow: 0 8px 20px rgba(165, 139, 212, 0.08);
-        }
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    /* Tamanho fluido */
+    margin: 0 0 5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--texto);
+    position: relative;
+    display: inline-block;
+    line-height: 1.2;
+}
 
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            cursor: pointer;
-            font-weight: 500;
-            color: var(--texto);
-        }
+/* Linha decorativa sutil no H1 */
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--detalhe-roxo), var(--detalhe), transparent);
+}
 
-        .faq-question i {
-            color: var(--detalhe-roxo);
-            font-size: 0.9rem;
-            transition: transform 0.3s;
-        }
+.description {
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
+    /* Tamanho fluido */
+    line-height: 1.6;
+    font-weight: 300;
+    color: #4a4a4a;
+    margin: 10px 0 5px;
+    max-width: 500px;
+    padding: 0 15px;
+}
 
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-        }
+/* Divisor minimalista */
+.divider {
+    width: 40px;
+    height: 2px;
+    background: var(--detalhe);
+    margin: 10px auto;
+    opacity: 0.3;
+}
 
-        .faq-answer {
-            padding: 0 0 20px;
-            color: #5a5a5a;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            display: none;
-            border-top: 1px dashed rgba(165, 139, 212, 0.2);
-            margin-top: 5px;
-        }
+/* Seta animada */
+.scroll-icon {
+    color: var(--detalhe-roxo);
+    font-size: clamp(1.2rem, 3vw, 1.4rem);
+    opacity: 0.6;
+    animation: bounce 2s infinite;
+    display: inline-block;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
 
-        .faq-item.active .faq-answer {
-            display: block;
-        }
+.scroll-icon:hover {
+    opacity: 1;
+}
 
-        /* Como Contratar Section - NOVA */
-        .hire-section {
-            width: 90%;
-            max-width: 800px;
-            margin: 40px 0 60px;
-            padding: 0 20px;
-        }
+@keyframes bounce {
 
-        .hire-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--texto);
-            letter-spacing: 1px;
-        }
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
 
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+    40% {
+        transform: translateY(-8px);
+    }
 
-        .step-card {
-            background: white;
-            padding: 25px 15px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(213, 184, 184, 0.2);
-            transition: all 0.3s;
-        }
+    60% {
+        transform: translateY(-4px);
+    }
+}
 
-        .step-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--detalhe-roxo);
-            box-shadow: 0 15px 30px rgba(165, 139, 212, 0.1);
-        }
+/* Grid de Botões/Cards - IMAGENS SÃO OS BOTÕES */
+.buttons-grid {
+    width: 90%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 30px 0;
+}
 
-        .step-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, rgba(165, 139, 212, 0.1), rgba(213, 184, 184, 0.1));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            font-size: 1.4rem;
-            color: var(--detalhe-roxo);
-        }
+/* Cards com efeito suave - as imagens do Canva são o destaque */
+.btn-card {
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(213, 184, 184, 0.2);
+    background: white;
+}
 
-        .step-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
+.btn-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 40px rgba(165, 139, 212, 0.1);
+    border-color: rgba(165, 139, 212, 0.3);
+}
 
-        .step-card p {
-            font-size: 0.85rem;
-            color: #6a6a6a;
-            line-height: 1.5;
-        }
+.btn-card:active {
+    transform: translateY(-2px);
+}
 
-        /* Hero Inferior */
-        .hero-bottom {
-            width: 100%;
-            height: 100vh;
-            margin-top: 20px;
-            object-fit: cover;
-            object-position: top;
-            border-top: 1px solid rgba(165, 139, 212, 0.2);
-            overflow: hidden;
-        }
+.btn-card img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s ease;
+}
 
-        .hero-bottom img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s ease;
-        }
+.btn-card:hover img {
+    transform: scale(1.02);
+}
 
-        .hero-bottom:hover img {
-            transform: scale(1.01);
-        }
+/* Chamada para Ação - Clean */
+.cta-box {
+    text-align: center;
+    padding: 50px 30px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(165, 139, 212, 0.2);
+    border-bottom: 1px solid rgba(165, 139, 212, 0.2);
+}
 
-        /* Rodapé */
-        footer {
-            padding: 30px 20px 40px;
-            text-align: center;
-            border-top: 1px solid rgba(165, 139, 212, 0.2);
-            width: 100%;
-        }
+.cta-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+    color: var(--texto);
+    font-weight: 400;
+    letter-spacing: 1px;
+}
 
-        footer p {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--detalhe-roxo);
-            letter-spacing: 2px;
-            font-size: 1rem;
-            opacity: 0.7;
-        }
+/* FAQ Section - NOVA */
+.faq-section {
+    width: 90%;
+    max-width: 600px;
+    margin: 50px 0;
+    padding: 0 20px;
+}
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin: 25px 0 15px;
-        }
+.faq-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--texto);
+    letter-spacing: 1px;
+}
 
-        .social-links a {
-            color: var(--texto);
-            font-size: 1.5rem;
-            opacity: 0.4;
-            transition: all 0.3s ease;
-        }
+.faq-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 
-        .social-links a:hover {
-            opacity: 0.8;
-            color: var(--detalhe-roxo);
-            transform: translateY(-2px);
-        }
+.faq-item {
+    background: white;
+    border-radius: 20px;
+    padding: 5px 20px;
+    border: 1px solid rgba(165, 139, 212, 0.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s;
+}
 
-        .first {
-            min-height: 100vh;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+.faq-item:hover {
+    border-color: rgba(165, 139, 212, 0.4);
+    box-shadow: 0 8px 20px rgba(165, 139, 212, 0.08);
+}
 
-        /* Responsividade */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8rem;
-            }
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--texto);
+}
 
-            .steps-grid {
-                grid-template-columns: 1fr;
-            }
+.faq-question i {
+    color: var(--detalhe-roxo);
+    font-size: 0.9rem;
+    transition: transform 0.3s;
+}
 
-            .faq-section,
-            .hire-section {
-                width: 95%;
-            }
-        }
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
 
-        @media (max-width: 480px) {
-            .steps-grid {
-                gap: 15px;
-            }
+.faq-answer {
+    padding: 0 0 20px;
+    color: #5a5a5a;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    display: none;
+    border-top: 1px dashed rgba(165, 139, 212, 0.2);
+    margin-top: 5px;
+}
 
-            .cta-text {
-                font-size: 1.1rem;
-            }
-        }
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+/* Como Contratar Section - NOVA */
+.hire-section {
+    width: 90%;
+    max-width: 800px;
+    margin: 40px 0 60px;
+    padding: 0 20px;
+}
+
+.hire-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--texto);
+    letter-spacing: 1px;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.step-card {
+    background: white;
+    padding: 25px 15px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid rgba(213, 184, 184, 0.2);
+    transition: all 0.3s;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--detalhe-roxo);
+    box-shadow: 0 15px 30px rgba(165, 139, 212, 0.1);
+}
+
+.step-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(165, 139, 212, 0.1), rgba(213, 184, 184, 0.1));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 1.4rem;
+    color: var(--detalhe-roxo);
+}
+
+.step-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.step-card p {
+    font-size: 0.85rem;
+    color: #6a6a6a;
+    line-height: 1.5;
+}
+
+/* Hero Inferior */
+.hero-bottom {
+    width: 100%;
+    height: 100vh;
+    margin-top: 20px;
+    object-fit: cover;
+    object-position: top;
+    border-top: 1px solid rgba(165, 139, 212, 0.2);
+    overflow: hidden;
+}
+
+.hero-bottom img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.hero-bottom:hover img {
+    transform: scale(1.01);
+}
+
+/* Rodapé */
+footer {
+    padding: 30px 20px 40px;
+    text-align: center;
+    border-top: 1px solid rgba(165, 139, 212, 0.2);
+    width: 100%;
+}
+
+footer p {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--detalhe-roxo);
+    letter-spacing: 2px;
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 25px 0 15px;
+}
+
+.social-links a {
+    color: var(--texto);
+    font-size: 1.5rem;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    opacity: 0.8;
+    color: var(--detalhe-roxo);
+    transform: translateY(-2px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .faq-section,
+    .hire-section {
+        width: 95%;
+    }
+
+    /* Ajuste para o first em tablets */
+    .first {
+        height: 100vh;
+        /* Mantém fullscreen */
+    }
+}
+
+@media (max-width: 480px) {
+    .steps-grid {
+        gap: 15px;
+    }
+
+    .cta-text {
+        font-size: 1.1rem;
+    }
+
+    /* Ajuste para o first em celulares */
+    .hero-top {
+        flex: 0 0 65%;
+    }
+
+    .section-text {
+        flex: 0 0 35%;
+    }
+}
+
+/* Removendo a classe first duplicada que estava no final */
     </style>
 </head>
 
