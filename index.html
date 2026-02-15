@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fontes: Orbitron (títulos) e Inter (corpo) - mais clean -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Yuri Santos | Design & Edição de Vídeo</title>
+    <style>
+        /* 
+            DESIGN MINIMALISTA INTELIGENTE
+            - Fundo claro para destacar as imagens do Canva
+            - Decisões sutis de CSS que complementam o design
+            - Estrutura HTML mantida (imagens são os botões)
+            - Simbiose entre programação e design visual
+        */
+        
+        :root {
+            --fundo: #faf8f5;      /* Base clara e aconchegante */
+            --texto: #1a1a1a;       /* Quase preto para contraste suave */
+            --detalhe: #d4a5a5;      /* Tom terroso suave */
+            --detalhe-roxo: #a58bd4; /* Roxo lavanda suave */
+            --espacamento: 40px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            color: var(--texto);
+            
+            /* Fundo claro com textura sutil de papel */
+            background-color: var(--fundo);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(213, 184, 184, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(165, 139, 212, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        /* Grid sutil de fundo - referência a linhas de edição */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.02) 1px, transparent 1px, transparent 30px),
+                repeating-linear-gradient(90deg, rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.02) 1px, transparent 1px, transparent 30px);
+            background-size: 30px 30px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Hero Superior */
+        .hero-top {
+            width: 100%;
+            height: 72vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-top img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.6s ease;
+        }
+
+        .hero-top:hover img {
+            transform: scale(1.02);
+        }
+
+        /* Seção Sobre */
+        .section-text {
+            text-align: center;
+            max-width: 500px;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin: 30px 0 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--texto);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Linha decorativa sutil no H1 */
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--detalhe-roxo), var(--detalhe), transparent);
+        }
+
+        .description {
+            font-size: 1rem;
+            line-height: 1.8;
+            font-weight: 300;
+            color: #4a4a4a;
+            margin: 25px 0 15px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Divisor minimalista */
+        .divider {
+            width: 40px;
+            height: 2px;
+            background: var(--detalhe);
+            margin: 25px auto;
+            opacity: 0.3;
+        }
+
+        /* Seta animada */
+        .scroll-icon {
+            color: var(--detalhe-roxo);
+            font-size: 1.4rem;
+            opacity: 0.6;
+            animation: bounce 2s infinite;
+            display: inline-block;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-icon:hover {
+            opacity: 1;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        /* Grid de Botões/Cards - IMAGENS SÃO OS BOTÕES */
+        .buttons-grid {
+            width: 90%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        /* Cards com efeito suave - as imagens do Canva são o destaque */
+        .btn-card {
+            width: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(213, 184, 184, 0.2);
+            background: white;
+        }
+
+        .btn-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 40px rgba(165, 139, 212, 0.1);
+            border-color: rgba(165, 139, 212, 0.3);
+        }
+
+        .btn-card:active {
+            transform: translateY(-2px);
+        }
+
+        .btn-card img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .btn-card:hover img {
+            transform: scale(1.02);
+        }
+
+        /* Chamada para Ação - Clean */
+        .cta-box {
+            text-align: center;
+            padding: 50px 30px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(165, 139, 212, 0.2);
+            border-bottom: 1px solid rgba(165, 139, 212, 0.2);
+        }
+
+        .cta-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--texto);
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        /* FAQ Section - NOVA */
+        .faq-section {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px 0;
+            padding: 0 20px;
+        }
+
+        .faq-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--texto);
+            letter-spacing: 1px;
+        }
+
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 20px;
+            padding: 5px 20px;
+            border: 1px solid rgba(165, 139, 212, 0.15);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(165, 139, 212, 0.4);
+            box-shadow: 0 8px 20px rgba(165, 139, 212, 0.08);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--texto);
+        }
+
+        .faq-question i {
+            color: var(--detalhe-roxo);
+            font-size: 0.9rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 0 20px;
+            color: #5a5a5a;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            display: none;
+            border-top: 1px dashed rgba(165, 139, 212, 0.2);
+            margin-top: 5px;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Como Contratar Section - NOVA */
+        .hire-section {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px 0 60px;
+            padding: 0 20px;
+        }
+
+        .hire-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--texto);
+            letter-spacing: 1px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .step-card {
+            background: white;
+            padding: 25px 15px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(213, 184, 184, 0.2);
+            transition: all 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--detalhe-roxo);
+            box-shadow: 0 15px 30px rgba(165, 139, 212, 0.1);
+        }
+
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(165, 139, 212, 0.1), rgba(213, 184, 184, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.4rem;
+            color: var(--detalhe-roxo);
+        }
+
+        .step-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .step-card p {
+            font-size: 0.85rem;
+            color: #6a6a6a;
+            line-height: 1.5;
+        }
+
+        /* Hero Inferior */
+        .hero-bottom {
+            width: 100%;
+            height: 100vh;
+            margin-top: 20px;
+            object-fit: cover; 
+            object-position: top;
+            border-top: 1px solid rgba(165, 139, 212, 0.2);
+            overflow: hidden;
+        }
+
+        .hero-bottom img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .hero-bottom:hover img {
+            transform: scale(1.01);
+        }
+
+        /* Rodapé */
+        footer {
+            padding: 30px 20px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(165, 139, 212, 0.2);
+            width: 100%;
+        }
+
+        footer p {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--detalhe-roxo);
+            letter-spacing: 2px;
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 25px 0 15px;
+        }
+
+        .social-links a {
+            color: var(--texto);
+            font-size: 1.5rem;
+            opacity: 0.4;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            opacity: 0.8;
+            color: var(--detalhe-roxo);
+            transform: translateY(-2px);
+        }
+
+        .first {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .faq-section, .hire-section {
+                width: 95%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .steps-grid {
+                gap: 15px;
+            }
+            
+            .cta-text {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="first">
+        <section class="hero-top">
+            <img src="img/yurisantos.png" alt="Yuri Santos">
+        </section>
+
+        <div class="section-text">
+            <h1>Yuri Santos</h1>
+            <p class="description">
+                Designer especializado em edição de vídeo e produção visual. 
+                Transformo ideias em narrativas que conectam.
+            </p>
+            <i class="fa-solid fa-chevron-down scroll-icon"></i>
+            <div class="divider"></div>
+        </div>
+    </section>
+
+    <!-- Grid de Botões (imagens do Canva) -->
+    <section class="buttons-grid">
+        <a href="#" class="btn-card"><img src="img/9.png" alt="Edição de Vídeo"></a>
+        <a href="#" class="btn-card"><img src="img/10.png" alt="Motion Design"></a>
+        <a href="#" class="btn-card"><img src="img/11.png" alt="Identidade Visual"></a>
+        <a href="#" class="btn-card"><img src="img/12.png" alt="Color Grading"></a>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2 class="faq-title">dúvidas frequentes</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>📽️ Como funciona o processo de edição?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Envio do material bruto + briefing, edição personalizada e entregáveis em até 5 dias úteis.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>💰 Quais as formas de pagamento?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Pix, cartão de crédito (até 3x) ou transferência bancária. 50% no início, 50% na entrega.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>🎬 Quais tipos de vídeo você edita?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Reels, vídeos para YouTube, institucionais, videoclipes e conteúdo para redes sociais.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como Contratar Section -->
+    <section class="hire-section">
+        <h2 class="hire-title">como contratar</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-icon"><i class="fa-regular fa-message"></i></div>
+                <h3>1. Contato</h3>
+                <p>Me chame no WhatsApp ou Instagram para conversarmos sobre seu projeto</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fa-regular fa-clipboard"></i></div>
+                <h3>2. Briefing</h3>
+                <p>Definimos objetivos, estilo e prazos para o seu vídeo</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fa-regular fa-circle-check"></i></div>
+                <h3>3. Entrega</h3>
+                <p>Você recebe o material editado com toda qualidade e revisões inclusas</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Box -->
+    <div class="cta-box">
+        <p class="cta-text">Vamos criar algo incrível juntos?</p>
+        <div class="social-links">
+            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <section class="hero-bottom">
+        <img src="img/fim.png" alt="Yuri Santos Atendimento">
+    </section>
+
+    <footer>
+        <p>YURI SANTOS</p>
+        <div style="font-size: 0.8rem; opacity: 0.5; margin-top: 15px;">
+            design & edição de vídeo
+        </div>
+    </footer>
+
+    <!-- JavaScript para FAQ -->
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
