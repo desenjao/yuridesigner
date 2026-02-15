@@ -1,1 +1,719 @@
-<a href="index.html">Voltar ao Início</a> chegou! Aqui estão alguns dos meus trabalhos recentes. Se você quiser ver mais, não hesite em entrar em contato comigo. Estou sempre aberto a novos projetos e desafios!
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fontes: Orbitron (títulos) e Inter (corpo) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Portfolio | Yuri Santos - Edição de Vídeo</title>
+    <style>
+        :root {
+            --fundo: #faf8f5;
+            --texto: #1a1a1a;
+            --detalhe: #d4a5a5;
+            --detalhe-roxo: #a58bd4;
+            --espacamento: 40px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            color: var(--texto);
+            background-color: var(--fundo);
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(213, 184, 184, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(165, 139, 212, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        /* Grid sutil de fundo */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.02) 0px, rgba(0, 0, 0, 0.02) 1px, transparent 1px, transparent 30px),
+                repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.02) 0px, rgba(0, 0, 0, 0.02) 1px, transparent 1px, transparent 30px);
+            background-size: 30px 30px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Header do Portfolio */
+        .portfolio-header {
+            width: 100%;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(165, 139, 212, 0.2);
+            margin-bottom: 40px;
+        }
+
+        .portfolio-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 6vw, 2.8rem);
+            color: var(--texto);
+            margin-bottom: 10px;
+        }
+
+        .portfolio-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--detalhe-roxo), var(--detalhe), transparent);
+        }
+
+        .portfolio-header p {
+            font-size: 1.1rem;
+            color: #5a5a5a;
+            max-width: 600px;
+            margin: 20px auto 0;
+            line-height: 1.6;
+        }
+
+        /* Botão voltar */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(165, 139, 212, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--texto);
+        }
+
+        .back-button:hover {
+            transform: translateX(-3px);
+            box-shadow: 0 6px 20px rgba(165, 139, 212, 0.2);
+            border-color: var(--detalhe-roxo);
+        }
+
+        /* Filtros de categoria */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 20px;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            border-radius: 30px;
+            border: 1px solid rgba(165, 139, 212, 0.3);
+            background: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--texto);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--detalhe-roxo);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(165, 139, 212, 0.1);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--detalhe-roxo), var(--detalhe));
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Grid do Portfolio */
+        .portfolio-grid {
+            width: 95%;
+            max-width: 1400px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            margin: 0 auto 50px;
+        }
+
+        /* Card de vídeo */
+        .video-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(213, 184, 184, 0.2);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 40px rgba(165, 139, 212, 0.15);
+            border-color: rgba(165, 139, 212, 0.3);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            aspect-ratio: 16/9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        /* Overlay de play */
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-overlay i {
+            color: white;
+            font-size: 3rem;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Info do card */
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--texto);
+        }
+
+        .video-info p {
+            color: #6a6a6a;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--detalhe-roxo);
+            border-top: 1px solid rgba(165, 139, 212, 0.1);
+            padding-top: 15px;
+        }
+
+        .video-category {
+            background: rgba(165, 139, 212, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        /* Modal para vídeo */
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            width: 90%;
+            max-width: 1200px;
+            position: relative;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            background: none;
+            border: none;
+        }
+
+        .close-modal:hover {
+            transform: scale(1.1);
+        }
+
+        .modal-info {
+            color: white;
+            margin-top: 20px;
+            padding: 0 10px;
+        }
+
+        .modal-info h2 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        /* CTA Section */
+        .portfolio-cta {
+            width: 100%;
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(165, 139, 212, 0.1), rgba(213, 184, 184, 0.1));
+            border-top: 1px solid rgba(165, 139, 212, 0.2);
+            border-bottom: 1px solid rgba(165, 139, 212, 0.2);
+            margin: 30px 0;
+        }
+
+        .portfolio-cta h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .portfolio-cta p {
+            font-size: 1.1rem;
+            color: #5a5a5a;
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 15px 40px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-button.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .cta-button.instagram {
+            background: linear-gradient(45deg, #f09433, #d62976, #962fbf, #4f5bd5);
+            color: white;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px 20px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(165, 139, 212, 0.2);
+            width: 100%;
+        }
+
+        footer p {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--detalhe-roxo);
+            letter-spacing: 2px;
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 20px;
+            }
+
+            .back-button {
+                top: 10px;
+                left: 10px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .filter-btn {
+                padding: 8px 18px;
+                font-size: 0.85rem;
+            }
+
+            .portfolio-cta h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="index.html" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i>
+    </a>
+
+    <header class="portfolio-header">
+        <h1>Portfolio</h1>
+        <p>Seleção de trabalhos que contam histórias através da edição de vídeo</p>
+    </header>
+
+    <!-- Filtros -->
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="casamento">Casamento</button>
+        <button class="filter-btn" data-filter="batizado">Batizado</button>
+        <button class="filter-btn" data-filter="aniversario">Aniversário</button>
+        <button class="filter-btn" data-filter="comercial">Comercial</button>
+    </div>
+
+    <!-- Grid do Portfolio -->
+    <div class="portfolio-grid" id="portfolio-grid">
+        <!-- Os cards serão inseridos via JavaScript -->
+    </div>
+
+    <!-- Modal do Vídeo -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">
+                <i class="fa-solid fa-times"></i>
+            </button>
+            <div class="video-container" id="videoContainer">
+                <!-- Iframe será inserido aqui -->
+            </div>
+            <div class="modal-info" id="modalInfo">
+                <h2 id="modalTitle">Título do Vídeo</h2>
+                <p id="modalDescription">Descrição do vídeo</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="portfolio-cta">
+        <h2>Gostou do que viu?</h2>
+        <p>Vamos criar algo incrível juntos para o seu projeto</p>
+        <div class="cta-buttons">
+            <a href="https://wa.me/5589981264127?text=Olá! Vi seu portfolio e gostaria de contratar um serviço."
+                target="_blank" class="cta-button whatsapp">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://instagram.com/seuperfil" target="_blank" class="cta-button instagram">
+                <i class="fa-brands fa-instagram"></i> Instagram
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>YURI SANTOS</p>
+        <div style="font-size: 0.8rem; opacity: 0.5; margin-top: 15px;">
+            design & edição de vídeo
+        </div>
+    </footer>
+
+    <script>
+        // Dados do portfolio (substitua pelos seus vídeos)
+        const portfolioItems = [
+            // Casamentos
+            {
+                id: 1,
+                title: "Casamento Ana & João",
+                description: "Uma história de amor contada através da edição",
+                thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+                videoId: "dQw4w9WgXcQ",
+                platform: "youtube",
+                category: "casamento",
+                duration: "3:45",
+                date: "2024"
+            },
+            {
+                id: 2,
+                title: "Casamento Maria & Pedro",
+                description: "Cerimônia emocionante na praia",
+                thumbnail: "https://img.youtube.com/vi/3JZ_D3ELwOQ/maxresdefault.jpg",
+                videoId: "3JZ_D3ELwOQ",
+                platform: "youtube",
+                category: "casamento",
+                duration: "4:20",
+                date: "2023"
+            },
+            // Batizados
+            {
+                id: 3,
+                title: "Batizado do Miguel",
+                description: "Celebração especial em família",
+                thumbnail: "https://img.youtube.com/vi/tgbNymZ7vqY/maxresdefault.jpg",
+                videoId: "tgbNymZ7vqY",
+                platform: "youtube",
+                category: "batizado",
+                duration: "2:55",
+                date: "2024"
+            },
+            {
+                id: 4,
+                title: "Batizado da Sofia",
+                description: "Momentos únicos e cheios de amor",
+                thumbnail: "https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg",
+                videoId: "kJQP7kiw5Fk",
+                platform: "youtube",
+                category: "batizado",
+                duration: "3:30",
+                date: "2023"
+            },
+            // Aniversários
+            {
+                id: 5,
+                title: "Aniversário 15 anos - Julia",
+                description: "Festa inesquecível de debutante",
+                thumbnail: "https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg",
+                videoId: "9bZkp7q19f0",
+                platform: "youtube",
+                category: "aniversario",
+                duration: "5:15",
+                date: "2024"
+            },
+            {
+                id: 6,
+                title: "Aniversário 50 anos - Carlos",
+                description: "Celebração de meio século de vida",
+                thumbnail: "https://img.youtube.com/vi/fJ9rUzIMcZQ/maxresdefault.jpg",
+                videoId: "fJ9rUzIMcZQ",
+                platform: "youtube",
+                category: "aniversario",
+                duration: "4:45",
+                date: "2023"
+            },
+            // Comerciais
+            {
+                id: 7,
+                title: "Comercial - Loja X",
+                description: "Campanha de lançamento de coleção",
+                thumbnail: "https://img.youtube.com/vi/ZXsQAXx_ao0/maxresdefault.jpg",
+                videoId: "ZXsQAXx_ao0",
+                platform: "youtube",
+                category: "comercial",
+                duration: "1:30",
+                date: "2024"
+            },
+            {
+                id: 8,
+                title: "Institucional - Empresa Y",
+                description: "Vídeo corporativo e institucional",
+                thumbnail: "https://img.youtube.com/vi/ScMzIvxBSi4/maxresdefault.jpg",
+                videoId: "ScMzIvxBSi4",
+                platform: "youtube",
+                category: "comercial",
+                duration: "2:15",
+                date: "2023"
+            }
+        ];
+
+        // Elementos do DOM
+        const portfolioGrid = document.getElementById('portfolio-grid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const modal = document.getElementById('videoModal');
+        const closeModal = document.getElementById('closeModal');
+        const videoContainer = document.getElementById('videoContainer');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+
+        // Função para criar cards
+        function createCard(item) {
+            return `
+                <div class="video-card" data-category="${item.category}" data-video-id="${item.videoId}" data-title="${item.title}" data-description="${item.description}">
+                    <div class="video-thumbnail">
+                        <img src="${item.thumbnail}" alt="${item.title}">
+                        <div class="play-overlay">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                        <div class="video-meta">
+                            <span class="video-category">${item.category}</span>
+                            <span><i class="fa-regular fa-clock"></i> ${item.duration}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Função para renderizar portfolio
+        function renderPortfolio(filter = 'all') {
+            const filteredItems = filter === 'all' 
+                ? portfolioItems 
+                : portfolioItems.filter(item => item.category === filter);
+            
+            portfolioGrid.innerHTML = filteredItems.map(createCard).join('');
+        }
+
+        // Função para abrir modal
+        function openModal(videoId, title, description) {
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+            iframe.allowFullscreen = true;
+            
+            videoContainer.innerHTML = '';
+            videoContainer.appendChild(iframe);
+            
+            modalTitle.textContent = title;
+            modalDescription.textContent = description;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Função para fechar modal
+        function closeVideoModal() {
+            modal.classList.remove('active');
+            videoContainer.innerHTML = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event listeners para filtros
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active de todos
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Adiciona active no clicado
+                button.classList.add('active');
+                // Renderiza com filtro
+                renderPortfolio(button.dataset.filter);
+            });
+        });
+
+        // Event listener para cards (delegação de eventos)
+        portfolioGrid.addEventListener('click', (e) => {
+            const card = e.target.closest('.video-card');
+            if (card) {
+                const videoId = card.dataset.videoId;
+                const title = card.dataset.title;
+                const description = card.dataset.description;
+                openModal(videoId, title, description);
+            }
+        });
+
+        // Fechar modal
+        closeModal.addEventListener('click', closeVideoModal);
+
+        // Fechar com ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeVideoModal();
+            }
+        });
+
+        // Fechar clicando fora
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeVideoModal();
+            }
+        });
+
+        // Render inicial
+        renderPortfolio();
+    </script>
+</body>
+
+</html>
