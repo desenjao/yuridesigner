@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
+    <!-- TÍTULO OTIMIZADO -->
+    <title>Yuri Santos | Edição de Vídeo Profissional</title>
+    <meta name="description" content="Designer especializado em edição de vídeos para eventos e marcas com trilha sonora estratégica.">
+    
+    <!-- FONTES (APENAS AS NECESSÁRIAS) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ÍCONES -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <style> 
+  /* ===== RESET E VARIÁVEIS ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #0A0A0A;
+    --text-primary: #FFFFFF;
+    --text-secondary: #CCCCCC;
+    --accent: #A58BD4;
+    --accent-gradient: linear-gradient(135deg, #A58BD4, #7B68B5);
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+    --border-radius: 12px;
+}
+
+html, body {
+    background-color: var(--bg-primary);
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ===== FUNDO DINÂMICO ===== */
+.particles-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(1px);
+    transition: transform 0.1s ease-out;
+}
+
+.particle-layer-1 { background: rgba(165, 139, 212, 0.1); filter: blur(3px); }
+.particle-layer-2 { background: rgba(255, 255, 255, 0.1); filter: blur(2px); }
+.particle-layer-3 { background: rgba(165, 139, 212, 0.2); filter: blur(1px); }
+
+/* ===== LAYOUT PRINCIPAL ===== */
+.container {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+/* ===== HERO TOP ===== */
+.hero {
+    width: 100%;
+    height: 65vh;
+    max-height: 650px;
+    min-height: 450px;
+    position: relative;
+    clip-path: ellipse(150% 100% at 50% 0%);
+    overflow: hidden;
+    border-radius: 0 0 30px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top; /* Evita cortar a cabeça */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* ===== INTRO & SCROLL INDICATOR ===== */
+.intro {
+    width: 100%;
+    text-align: center;
+    padding: var(--spacing-md) var(--spacing-sm);
+    animation: fadeInUp 1s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    background: linear-gradient(135deg, #FFFFFF, #E0E0E0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 400px;
+}
+
+.scroll-indicator {
+    position: relative; /* Ajustado para ficar abaixo do texto */
+    margin-top: 25px;
+    color: var(--text-primary);
+    animation: bounce 2s infinite;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* ===== GRID DE BOTÕES (ESTILO CANVA 3D) ===== */
+.buttons-grid {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: var(--spacing-md) 0;
+}
+
+.btn-card {
+    width: 100%;
+    text-decoration: none;
+    display: block;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: none !important;
+    background: transparent !important;
+    overflow: visible !important; 
+}
+
+.btn-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.4));
+    transition: transform 0.5s ease;
+}
+
+.btn-card:hover {
+    transform: translateY(-6px) scale(1.02);
+}
+
+.btn-card:hover img {
+    filter: drop-shadow(0 12px 20px rgba(165, 139, 212, 0.4));
+}
+
+/* ===== CTA & SOCIAL ===== */
+.cta-section {
+    width: 100%;
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    background: linear-gradient(to bottom, transparent, rgba(165, 139, 212, 0.1));
+    border-radius: 30px 30px 0 0;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.social-links a {
+    color: var(--text-primary);
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    background: rgba(0,0,0,0.2);
+    backdrop-filter: blur(5px);
+}
+
+.social-links a:hover {
+    background: var(--accent-gradient);
+    border-color: transparent;
+    transform: translateY(-3px);
+}
+
+/* ===== HERO BOTTOM ===== */
+.hero-bottom {
+    width: 100%;
+    height: 45vh;
+    margin-top: -10px;
+    border-radius: 30px 30px 0 0;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--bg-primary);
+}
+
+.hero-bottom img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+/* ===== WHATSAPP FLOAT & MODAL ===== */
+.whatsapp-float {
+    position: fixed;
+    width: 65px;
+    height: 65px;
+    bottom: 25px;
+    right: 25px;
+    background: var(--accent-gradient);
+    border-radius: 50%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s infinite;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.whatsapp-icon { width: 32px; height: 32px; fill: white; }
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(165, 139, 212, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(165, 139, 212, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(165, 139, 212, 0); }
+}
+
+.wpp-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    align-items: center;
+    justify-content: center;
+}
+
+.wpp-modal-content {
+    background: linear-gradient(135deg, #111, #000);
+    width: 90%;
+    max-width: 380px;
+    border-radius: 24px;
+    padding: var(--spacing-lg);
+    border: 1px solid rgba(165, 139, 212, 0.3);
+}
+
+.wpp-modal-body button {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+    color: white;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.3s;
+    font-size: 0.95rem;
+}
+
+.wpp-modal-body button:hover {
+    background: var(--accent-gradient);
+    transform: translateX(5px);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media screen and (min-width: 768px) {
+    .container { max-width: 700px; }
+    .buttons-grid { max-width: 500px; }
+    h1 { font-size: 3rem; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+    </style>
+</head>
+<body>
+    <!-- FUNDO DINÂMICO COM PARTÍCULAS -->
+    <div class="particles-background" id="particles"></div>
+
+    <main class="container">
+        <!-- HERO TOP -->
+        <section class="hero">
+            <img 
+                src="img/Arte Cinematográfica Yuri Santos.jpg.jpeg" 
+                alt="Yuri Santos - Edição Cinematográfica"
+                loading="eager"
+            >
+        
+        </section>
+
+        <!-- INTRO -->
+        <section class="intro">
+            <h1>YURI SANTOS</h1>
+            <p class="description">
+                Designer especializado em edição de vídeos para eventos e marcas, 
+                com trilha sonora pensada estrategicamente.
+            </p>
+                <div class="scroll-indicator">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- BOTÕES (SUAS ARTES DO CANVA) -->
+        <section class="buttons-grid">
+            <a href="servicos.html" class="btn-card">
+                <img src="img/servicos.png" alt="Conheça serviços de edição - VSL e Criativos">
+            </a>
+            <a href="profile.html" class="btn-card">
+                <img src="img/2.png" alt="Sobre Yuri Santos - Editor profissional">
+            </a>
+            <a href="#" onclick="toggleWppModal(); return false;" class="btn-card">
+                <img src="img/3.png" alt="Entre em contato via WhatsApp">
+            </a>
+            <a href="https://www.instagram.com/agency_lidera/" class="btn-card" target="_blank" rel="noopener">
+                <img src="img/4.png" alt="Instagram - Agência Lídera">
+            </a>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="cta-section">
+            <p class="cta-text">Se você quer agilidade, deixe nas mãos de quem sabe!</p>
+            <div class="social-links">
+                <a href="#" onclick="toggleWppModal(); return false;" aria-label="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                <a href="https://instagram.com/yuri.santos" aria-label="Instagram" target="_blank" rel="noopener">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- HERO BOTTOM -->
+        <section class="hero-bottom">
+            <img 
+                src="img/fundo.png" 
+                alt="Yuri Santos - Background"
+                loading="lazy"
+                style="object-fit: cover; object-position: center top;"
+            >
+        </section>
+    </main>
+
+    <!-- WHATSAPP FLOAT -->
+    <div class="whatsapp-float" onclick="toggleWppModal()">
+        <svg viewBox="0 0 32 32" class="whatsapp-icon">
+            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.733 5.476 2.014 7.787l-2.014 7.353 7.525-1.972c2.31 1.274 4.975 2.002 7.81 2.002 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.333c-2.608 0-5.051-0.704-7.155-1.925l-0.513-0.3-4.469 1.17 1.192-4.353-0.33-0.525c-1.332-2.121-2.099-4.632-2.099-7.327 0-7.359 5.975-13.333 13.333-13.333s13.333 5.975 13.333 13.333-5.975 13.333-13.333 13.333zM22.507 19.34c-0.356-0.178-2.107-1.039-2.441-1.156-0.333-0.117-0.577-0.178-0.819 0.178s-0.939 1.156-1.152 1.391c-0.213 0.235-0.427 0.267-0.783 0.089-0.356-0.178-1.504-0.554-2.864-1.769-1.059-0.945-1.774-2.112-1.981-2.469-0.213-0.356-0.023-0.548 0.155-0.725 0.161-0.158 0.356-0.415 0.534-0.622s0.237-0.356 0.356-0.593c0.118-0.237 0.059-0.445-0.030-0.622-0.089-0.178-0.819-1.975-1.123-2.706-0.296-0.713-0.598-0.617-0.822-0.628-0.213-0.011-0.457-0.013-0.701-0.013s-0.641 0.091-0.976 0.46c-0.334 0.368-1.275 1.246-1.275 3.039s1.309 3.522 1.488 3.759c0.178 0.237 2.575 3.931 6.237 5.513 0.871 0.377 1.551 0.602 2.081 0.771 0.875 0.278 1.672 0.239 2.301 0.145 0.702-0.105 2.107-0.86 2.404-1.691 0.297-0.832 0.297-1.545 0.208-1.693-0.089-0.148-0.326-0.237-0.682-0.415z"></path>
+        </svg>
+    </div>
+
+    <!-- MODAL WHATSAPP -->
+    <div id="wppModal" class="wpp-modal">
+        <div class="wpp-modal-content">
+            <div class="wpp-modal-header">
+                <h3>Como posso ajudar?</h3>
+                <span class="close-modal" onclick="toggleWppModal()">&times;</span>
+            </div>
+            <div class="wpp-modal-body">
+                <button onclick="sendWppMsg('Olá! Gostaria de saber mais sobre a edição de VSL / Criativos de Alta Conversão.')">
+                    🎯 VSL & Criativos
+                </button>
+                <button onclick="sendWppMsg('Oi! Tenho interesse em elevar o nível do meu canal no YouTube com suas edições.')">
+                    🎬 Edição para YouTube
+                </button>
+                <button onclick="sendWppMsg('Olá! Gostaria de um orçamento para edição de Reels / Shorts / TikTok dinâmicos.')">
+                    📱 Vídeos Curtos (Reels/TikTok)
+                </button>
+                <button onclick="sendWppMsg('Oi! Quero saber como funciona o serviço de edição para Lançamentos / Infoprodutos.')">
+                    🚀 Lançamentos & Infoprodutos
+                </button>
+                <button onclick="sendWppMsg('Vi seu portfólio e gostaria de bater um papo sobre um projeto personalizado!')">
+                    💎 Projeto Personalizado
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== FUNDO DINÂMICO COM PARTÍCULAS =====
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const numberOfParticles = 50;
+            
+            // Limpa partículas existentes
+            container.innerHTML = '';
+            
+            for (let i = 0; i < numberOfParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Tamanho aleatório entre 5px e 50px
+                const size = Math.random() * 45 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Posição aleatória
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Velocidade de movimento (para o efeito parallax)
+                const speed = 0.2 + Math.random() * 0.5;
+                particle.dataset.speed = speed;
+                
+                // Camada de profundidade
+                const layer = Math.floor(Math.random() * 3) + 1;
+                particle.classList.add(`particle-layer-${layer}`);
+                particle.dataset.layer = layer;
+                
+                // Opacidade aleatória
+                particle.style.opacity = 0.3 + Math.random() * 0.5;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // ===== ANIMAÇÃO DAS PARTÍCULAS COM SCROLL =====
+        function animateParticles() {
+            const particles = document.querySelectorAll('.particle');
+            const scrollY = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollProgress = maxScroll > 0 ? scrollY / maxScroll : 0;
+            
+            particles.forEach(particle => {
+                const speed = parseFloat(particle.dataset.speed) || 0.3;
+                const layer = parseInt(particle.dataset.layer) || 1;
+                
+                // Movimento baseado no scroll com diferentes velocidades por camada
+                // Camada 1 (mais fundo) move menos, camada 3 (mais perto) move mais
+                let moveY = scrollProgress * 200 * speed * (layer / 2);
+                
+                // Movimento suave
+                particle.style.transform = `translateY(${moveY}px)`;
+            });
+            
+            requestAnimationFrame(animateParticles);
+        }
+
+        // ===== WHATSAPP FUNCTIONS =====
+        const phoneNumber = "5589999767984";
+
+        function toggleWppModal() {
+            const modal = document.getElementById("wppModal");
+            if (modal.style.display === "flex") {
+                modal.style.display = "none";
+            } else {
+                modal.style.display = "flex";
+            }
+        }
+
+        function sendWppMsg(message) {
+            const encodedMsg = encodeURIComponent(message);
+            const url = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+            window.open(url, '_blank');
+            toggleWppModal();
+        }
+
+        // ===== FECHA MODAL AO CLICAR FORA =====
+        window.onclick = function(event) {
+            const modal = document.getElementById("wppModal");
+            if (event.target == modal) {
+                toggleWppModal();
+            }
+        }
+
+        // ===== FECHA MODAL COM TECLA ESC =====
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modal = document.getElementById("wppModal");
+                if (modal.style.display === "flex") {
+                    toggleWppModal();
+                }
+            }
+        });
+
+        // ===== INICIALIZAÇÃO =====
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            animateParticles();
+        });
+
+        // ===== REVELAR ELEMENTOS COM SCROLL =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.btn-card, .cta-section, .hero-bottom').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
