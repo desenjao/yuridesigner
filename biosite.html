@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     
     <!-- TÍTULO OTIMIZADO -->
     <title>Yuri Santos | Edição de Vídeo Profissional</title>
@@ -22,7 +22,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent; /* Remove highlight ao tocar */
         }
 
         :root {
@@ -50,7 +49,7 @@
             --text-primary: #1D1D1F;
             --text-secondary: #424245;
             --accent: #FFD700;
-            --accent-gradient: linear-gradient(135deg, #FFD700, #A58BD4);
+            --accent-gradient: linear-gradient(135deg, #FFD700;, #A58BD4);
             --card-bg: rgba(255, 255, 255, 0.7);
             --border-color: rgba(0, 0, 0, 0.1);
             --shadow-color: rgba(0, 0, 0, 0.1);
@@ -65,9 +64,6 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.3s ease, color 0.3s ease;
-            /* Melhora performance de scroll */
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior: none; /* Remove o efeito de "fisgamento" */
         }
 
         /* ===== WELCOME SCREEN (LIQUID GLASS) ===== */
@@ -84,8 +80,7 @@
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             background-color: rgba(0, 0, 0, 0.3);
-            transition: opacity 0.5s ease, visibility 0.5s ease; /* Reduzido tempo */
-            will-change: opacity, visibility; /* Otimiza animação */
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         [data-theme="light"] .welcome-screen {
@@ -110,10 +105,80 @@
             width: 90%;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
                         0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-            animation: glassAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: glassAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
-            will-change: transform, opacity; /* Otimiza animação */
+        }
+
+        [data-theme="light"] .glass-card {
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2),
+                        0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
+            opacity: 0.3;
+            animation: rotate 20s linear infinite;
+        }
+
+        .glass-card h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #FFFFFF, #E0E0E0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        [data-theme="light"] .glass-card h1 {
+            background: linear-gradient(135deg, #1D1D1F, #424245);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .glass-card .explore-btn {
+            background: var(--accent-gradient);
+            border: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 16px 32px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 20px rgba(123, 104, 181, 0.3);
+        }
+
+        .glass-card .explore-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 28px rgba(123, 104, 181, 0.5);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .glass-card .explore-btn:active {
+            transform: scale(0.98);
         }
 
         /* Theme Toggle Button */
@@ -130,11 +195,29 @@
             display: flex;
             gap: 4px;
             box-shadow: 0 4px 15px var(--shadow-color);
-            /* Garante que não atrapalhe scroll */
-            pointer-events: auto;
         }
 
-        /* ===== FUNDO DINÂMICO (OTIMIZADO) ===== */
+        .theme-toggle button {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .theme-toggle button.active {
+            background: var(--accent-gradient);
+            color: white;
+        }
+
+        /* ===== FUNDO DINÂMICO ===== */
         .particles-background {
             position: fixed;
             top: 0;
@@ -143,34 +226,22 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
-            /* Background fallback para mobile */
-            background: radial-gradient(circle at 50% 50%, rgba(165,139,212,0.05), transparent 70%);
-        }
-
-        /* Versão estática para mobile (melhor performance) */
-        @media (max-width: 768px) {
-            .particles-background {
-                background: radial-gradient(circle at 50% 50%, rgba(165,139,212,0.03), transparent 70%);
-            }
-            
-            /* Desativa partículas animadas no mobile */
-            .particle {
-                display: none;
-            }
         }
 
         .particle {
             position: absolute;
             border-radius: 50%;
             filter: blur(1px);
-            /* Remove transição para evitar recálculos */
-            transition: none;
-            /* Otimiza renderização */
-            will-change: transform;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            transform: translateZ(0);
+            transition: transform 0.1s ease-out;
         }
+
+        .particle-layer-1 { background: rgba(165, 139, 212, 0.1); filter: blur(3px); }
+        .particle-layer-2 { background: rgba(255, 255, 255, 0.1); filter: blur(2px); }
+        .particle-layer-3 { background: rgba(165, 139, 212, 0.2); filter: blur(1px); }
+
+        [data-theme="light"] .particle-layer-1 { background: rgba(123, 104, 181, 0.1); }
+        [data-theme="light"] .particle-layer-2 { background: rgba(0, 0, 0, 0.05); }
+        [data-theme="light"] .particle-layer-3 { background: rgba(123, 104, 181, 0.15); }
 
         /* ===== LAYOUT PRINCIPAL ===== */
         .container {
@@ -182,9 +253,6 @@
             flex-direction: column;
             align-items: center;
             gap: var(--spacing-md);
-            /* Melhora performance de scroll */
-            transform: translateZ(0);
-            backface-visibility: hidden;
         }
 
         /* ===== HERO TOP ===== */
@@ -198,9 +266,6 @@
             overflow: hidden;
             border-radius: 0 0 30px 30px;
             box-shadow: 0 10px 30px var(--shadow-color);
-            /* Otimiza renderização */
-            transform: translateZ(0);
-            backface-visibility: hidden;
         }
 
         .hero img {
@@ -209,11 +274,7 @@
             object-fit: cover;
             object-position: center top;
             display: block;
-            /* Remove transição que pode causar lag */
-            transition: none;
-            /* Otimiza renderização */
-            transform: translateZ(0);
-            backface-visibility: hidden;
+            transition: transform 0.3s ease;
         }
 
         /* ===== INTRO & SCROLL INDICATOR ===== */
@@ -221,12 +282,27 @@
             width: 100%;
             text-align: center;
             padding: var(--spacing-md) var(--spacing-sm);
-            animation: fadeInUp 0.8s ease;
+            animation: fadeInUp 1s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 30vh;
             justify-content: space-between;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 400px;
         }
 
         .scroll-indicator {
@@ -243,15 +319,12 @@
             align-items: center;
             justify-content: center;
             border: 1px solid var(--border-color);
-            /* Otimiza animação */
-            will-change: transform;
-            backface-visibility: hidden;
         }
 
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-8px); } /* Reduzido para menos movimento */
-            60% { transform: translateY(-4px); } /* Reduzido para menos movimento */
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
         /* ===== GRID DE BOTÕES ===== */
@@ -267,14 +340,10 @@
             width: 100%;
             text-decoration: none;
             display: block;
-            transition: transform 0.3s ease; /* Transição mais leve */
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             border: none !important;
             background: transparent !important;
-            overflow: visible !important;
-            /* Otimiza renderização */
-            will-change: transform;
-            backface-visibility: hidden;
-            transform: translateZ(0);
+            overflow: visible !important; 
         }
 
         .btn-card img {
@@ -282,17 +351,15 @@
             height: auto;
             display: block;
             filter: drop-shadow(0 8px 12px var(--shadow-color));
-            transition: filter 0.3s ease; /* Transição mais leve */
-            /* Otimiza renderização */
-            backface-visibility: hidden;
+            transition: transform 0.5s ease;
         }
 
         .btn-card:hover {
-            transform: translateY(-4px) scale(1.01); /* Reduzido para menos movimento */
+            transform: translateY(-6px) scale(1.02);
         }
 
-        .btn-card:active {
-            transform: translateY(-2px) scale(0.99);
+        .btn-card:hover img {
+            filter: drop-shadow(0 12px 20px rgba(165, 139, 212, 0.4));
         }
 
         /* ===== CTA & SOCIAL ===== */
@@ -320,16 +387,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.2s; /* Transição mais rápida */
+            transition: 0.3s;
             background: var(--card-bg);
             backdrop-filter: blur(5px);
-            /* Otimiza renderização */
-            will-change: transform;
-            backface-visibility: hidden;
         }
 
-        .social-links a:active {
-            transform: scale(0.95); /* Feedback de toque */
+        .social-links a:hover {
+            background: var(--accent-gradient);
+            border-color: transparent;
+            transform: translateY(-3px);
+            color: white;
         }
 
         /* ===== HERO BOTTOM ===== */
@@ -341,9 +408,6 @@
             overflow: hidden;
             position: relative;
             background-color: var(--bg-primary);
-            /* Otimiza renderização */
-            transform: translateZ(0);
-            backface-visibility: hidden;
         }
 
         .hero-bottom img {
@@ -352,42 +416,32 @@
             object-fit: cover;
             object-position: center top;
             display: block;
-            /* Otimiza renderização */
-            transform: translateZ(0);
-            backface-visibility: hidden;
         }
 
         /* ===== WHATSAPP FLOAT & MODAL ===== */
         .whatsapp-float {
             position: fixed;
-            width: 60px; /* Reduzido ligeiramente */
-            height: 60px; /* Reduzido ligeiramente */
-            bottom: 20px;
-            right: 20px;
+            width: 65px;
+            height: 65px;
+            bottom: 25px;
+            right: 25px;
             background: var(--accent-gradient);
             border-radius: 50%;
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
+            animation: pulse 2s infinite;
             cursor: pointer;
             border: 1px solid rgba(255,255,255,0.2);
-            /* Otimiza animação */
-            will-change: transform;
-            backface-visibility: hidden;
         }
 
-        .whatsapp-icon { 
-            width: 30px; 
-            height: 30px; 
-            fill: white; 
-        }
+        .whatsapp-icon { width: 32px; height: 32px; fill: white; }
 
-        /* Remove animação pulse no mobile para melhor performance */
-        @media (max-width: 768px) {
-            .whatsapp-float {
-                animation: none;
-            }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(165, 139, 212, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(165, 139, 212, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(165, 139, 212, 0); }
         }
 
         .wpp-modal {
@@ -408,9 +462,38 @@
             border-radius: 24px;
             padding: var(--spacing-lg);
             border: 1px solid rgba(165, 139, 212, 0.3);
-            /* Otimiza renderização */
-            transform: translateZ(0);
-            backface-visibility: hidden;
+        }
+
+        [data-theme="light"] .wpp-modal-content {
+            background: linear-gradient(135deg, #fff, #f5f5f7);
+            border: 1px solid rgba(123, 104, 181, 0.3);
+        }
+
+        [data-theme="light"] .wpp-modal-content h3 {
+            color: #1D1D1F;
+        }
+
+        .wpp-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .close-modal {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: white;
+        }
+
+        [data-theme="light"] .close-modal:hover {
+            color: #1D1D1F;
         }
 
         .wpp-modal-body button {
@@ -423,22 +506,20 @@
             color: var(--text-primary);
             cursor: pointer;
             text-align: left;
-            transition: 0.2s; /* Transição mais rápida */
+            transition: 0.3s;
             font-size: 0.95rem;
-            /* Otimiza renderização */
-            -webkit-tap-highlight-color: rgba(165, 139, 212, 0.3);
         }
 
-        .wpp-modal-body button:active {
+        .wpp-modal-body button:hover {
             background: var(--accent-gradient);
-            transform: translateX(3px); /* Reduzido */
+            transform: translateX(5px);
             color: white;
         }
 
         @keyframes glassAppear {
             from {
                 opacity: 0;
-                transform: scale(0.95) translateY(15px); /* Reduzido */
+                transform: scale(0.9) translateY(20px);
             }
             to {
                 opacity: 1;
@@ -446,8 +527,13 @@
             }
         }
 
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); } /* Reduzido */
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -458,28 +544,10 @@
             h1 { font-size: 3rem; }
         }
 
-        /* Modo de acessibilidade - reduz movimento */
         @media (prefers-reduced-motion: reduce) {
-            * {
+            .particle, .glass-card, .welcome-screen {
                 animation: none !important;
                 transition: none !important;
-                scroll-behavior: auto !important;
-            }
-            
-            .particle {
-                display: none;
-            }
-            
-            .particles-background {
-                background: radial-gradient(circle at 50% 50%, rgba(165,139,212,0.05), transparent 70%);
-            }
-        }
-
-        /* Remove atraso em elementos com backdrop-filter */
-        @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-            .glass-card, .theme-toggle, .social-links a, .wpp-modal {
-                -webkit-backdrop-filter: blur(10px);
-                backdrop-filter: blur(10px);
             }
         }
     </style>
@@ -506,10 +574,8 @@
         </div>
     </div>
 
-    <!-- FUNDO DINÂMICO COM PARTÍCULAS (OTIMIZADO) -->
-    <div class="particles-background" id="particles">
-        <!-- Partículas serão inseridas via JS apenas em desktop -->
-    </div>
+    <!-- FUNDO DINÂMICO COM PARTÍCULAS -->
+    <div class="particles-background" id="particles"></div>
 
     <main class="container">
         <!-- HERO TOP -->
@@ -634,22 +700,22 @@
             const glassCard = document.getElementById('glassCard');
             
             if (animate) {
-                glassCard.style.transition = 'opacity 0.3s ease, transform 0.3s ease'; // Reduzido
+                glassCard.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
                 glassCard.style.opacity = '0';
                 glassCard.style.transform = 'scale(0.95)';
                 
                 setTimeout(() => {
                     welcomeScreen.classList.add('hidden');
-                }, 300); // Reduzido
+                }, 400);
             } else {
                 welcomeScreen.classList.add('hidden');
             }
         }
 
-        // Auto-hide after 2 seconds (reduzido)
+        // Auto-hide after 2.5 seconds
         setTimeout(() => {
             hideWelcomeScreen(true);
-        }, 2000);
+        }, 2500);
 
         // Hide on button click
         document.getElementById('exploreBtn').addEventListener('click', function(e) {
@@ -667,78 +733,67 @@
             }
         });
 
-        // ===== FUNDO DINÂMICO COM PARTÍCULAS (OTIMIZADO) =====
+        // ===== FUNDO DINÂMICO COM PARTÍCULAS =====
         function createParticles() {
             const container = document.getElementById('particles');
             const motionMediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-            const isMobile = window.innerWidth < 768;
             
-            // Não cria partículas em mobile para melhor performance
-            if (motionMediaQuery.matches || isMobile) {
+            if (motionMediaQuery.matches) {
+                // Criar fundo estático com menos partículas
+                container.style.background = 'radial-gradient(circle at 50% 50%, rgba(165,139,212,0.1), transparent 70%)';
                 return;
             }
             
-            const numberOfParticles = 25; // Reduzido para 25
+            const numberOfParticles = window.innerWidth < 768 ? 30 : 50;
             container.innerHTML = '';
             
             for (let i = 0; i < numberOfParticles; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                const size = Math.random() * 30 + 5; // Reduzido tamanho máximo
+                const size = Math.random() * 45 + 5;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 
                 particle.style.left = `${Math.random() * 100}%`;
                 particle.style.top = `${Math.random() * 100}%`;
                 
+                const speed = 0.2 + Math.random() * 0.5;
+                particle.dataset.speed = speed;
+                
                 const layer = Math.floor(Math.random() * 3) + 1;
                 particle.classList.add(`particle-layer-${layer}`);
+                particle.dataset.layer = layer;
                 
-                particle.style.opacity = 0.2 + Math.random() * 0.3; // Reduzido opacidade
+                particle.style.opacity = 0.3 + Math.random() * 0.5;
                 
                 container.appendChild(particle);
             }
         }
 
-        // ===== ANIMAÇÃO DAS PARTÍCULAS (OTIMIZADA) =====
+        // ===== ANIMAÇÃO DAS PARTÍCULAS COM SCROLL =====
         function animateParticles() {
             const motionMediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-            const isMobile = window.innerWidth < 768;
-            
-            // Não anima em mobile ou se usuário prefere reduzir movimento
-            if (motionMediaQuery.matches || isMobile) return;
+            if (motionMediaQuery.matches) return;
             
             const particles = document.querySelectorAll('.particle');
-            if (particles.length === 0) return;
+            const scrollY = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollProgress = maxScroll > 0 ? scrollY / maxScroll : 0;
             
-            let scrollY = 0;
-            let ticking = false;
-            
-            window.addEventListener('scroll', function() {
-                scrollY = window.scrollY;
+            particles.forEach(particle => {
+                const speed = parseFloat(particle.dataset.speed) || 0.3;
+                const layer = parseInt(particle.dataset.layer) || 1;
                 
-                if (!ticking) {
-                    window.requestAnimationFrame(function() {
-                        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-                        const scrollProgress = maxScroll > 0 ? scrollY / maxScroll : 0;
-                        
-                        particles.forEach(particle => {
-                            const speed = 0.2; // Velocidade fixa para consistência
-                            const moveY = scrollProgress * 100 * speed;
-                            particle.style.transform = `translateY(${moveY}px)`;
-                        });
-                        
-                        ticking = false;
-                    });
-                    
-                    ticking = true;
-                }
-            }, { passive: true }); // Importante: passive melhora performance de scroll
+                let moveY = scrollProgress * 200 * speed * (layer / 2);
+                particle.style.transform = `translateY(${moveY}px)`;
+            });
+            
+            requestAnimationFrame(animateParticles);
         }
 
         // ===== WHATSAPP FUNCTIONS =====
-        const phoneNumber = "5589981264127";
+        const phoneNumber = "5589981264127"; // Substitua pelo seu número de telefone com código do país
 
         function toggleWppModal() {
             const modal = document.getElementById("wppModal");
@@ -774,17 +829,16 @@
             }
         });
 
-        // ===== INICIALIZAÇÃO OTIMIZADA =====
+        // ===== INICIALIZAÇÃO =====
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
             animateParticles();
         });
 
-        // ===== REVELAR ELEMENTOS COM SCROLL (OTIMIZADO) =====
-        // Usa Intersection Observer com thresholds menores para performance
+        // ===== REVELAR ELEMENTOS COM SCROLL =====
         const observerOptions = {
-            threshold: 0.05, // Reduzido
-            rootMargin: '0px'
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -792,23 +846,16 @@
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
-                    // Para de observar após revelar
-                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
         document.querySelectorAll('.btn-card, .cta-section, .hero-bottom').forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)'; // Reduzido
-            el.style.transition = 'opacity 0.4s ease, transform 0.4s ease'; // Reduzido
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
-
-        // ===== PREVINE COMPORTAMENTO PADRÃO DE TOQUE =====
-        document.addEventListener('touchmove', function(e) {
-            // Permite scroll normal sem interferência
-        }, { passive: true });
     </script>
 </body>
 </html>
