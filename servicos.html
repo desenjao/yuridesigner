@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yuri Santos | Edição de Vídeos Dinâmicos</title>
     
+    <!-- META TAGS -->
+    <meta name="description" content="Edição de vídeos dinâmicos para YouTube, Reels, TikTok e eventos. Transforme suas gravações em conteúdo profissional com Yuri Santos.">
+    <meta property="og:title" content="Yuri Santos | Edição de Vídeos Dinâmicos">
+    <meta property="og:description" content="Transformo gravações comuns em vídeos envolventes para gerar retenção e autoridade.">
+    <meta property="og:type" content="website">
+    
     <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,15 +26,52 @@
             box-sizing: border-box;
         }
 
+        :root {
+            /* Tema Dark (padrão) - com dourado */
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #111216;
+            --text-primary: #FFFFFF;
+            --text-secondary: #CCCCCC;
+            --accent-1: #FFD700; /* Dourado */
+            --accent-2: #FBBF24; /* Dourado mais suave */
+            --accent-3: #F59E0B; /* Âmbar */
+            --accent-gradient: linear-gradient(135deg, #FFD700, #FBBF24, #F59E0B);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-bg-hover: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --border-color-hover: rgba(255, 215, 0, 0.3);
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --shadow-glow: rgba(255, 215, 0, 0.3);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #F8FAFC;
+            --bg-secondary: #FFFFFF;
+            --text-primary: #0F172A;
+            --text-secondary: #334155;
+            --accent-1: #B8860B; /* Dourado escuro */
+            --accent-2: #DAA520; /* Dourado médio */
+            --accent-3: #FFD700; /* Dourado claro */
+            --accent-gradient: linear-gradient(135deg, #B8860B, #DAA520, #FFD700);
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --card-bg-hover: rgba(255, 255, 255, 0.9);
+            --border-color: rgba(0, 0, 0, 0.1);
+            --border-color-hover: rgba(184, 134, 11, 0.3);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --shadow-glow: rgba(218, 165, 32, 0.3);
+        }
+
         body {
-            background: #0a0a0f;
-            background-image: radial-gradient(circle at 15% 30%, rgba(147, 51, 234, 0.15) 0%, transparent 30%),
-                              radial-gradient(circle at 85% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 35%),
-                              radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);
+            background: var(--bg-primary);
+            background-image: 
+                radial-gradient(circle at 15% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 85% 70%, rgba(251, 191, 36, 0.1) 0%, transparent 35%),
+                radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.08) 0%, transparent 40%);
             font-family: 'Space Grotesk', sans-serif;
-            color: #FFFFFF;
+            color: var(--text-primary);
             line-height: 1.5;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -37,18 +80,55 @@
             padding: 40px 24px 80px;
         }
 
+        /* ===== THEME TOGGLE ===== */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 40px;
+            padding: 8px;
+            display: flex;
+            gap: 4px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+        }
+
+        .theme-toggle button {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .theme-toggle button.active {
+            background: var(--accent-gradient);
+            color: #0F172A;
+            font-weight: bold;
+        }
+
         /* ===== BOTÃO VOLTAR ===== */
         .back-button {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.9rem;
             margin-bottom: 40px;
             transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             padding: 8px 20px;
             border-radius: 40px;
             backdrop-filter: blur(10px);
@@ -56,15 +136,15 @@
 
         .back-button i {
             font-size: 1.1rem;
-            background: linear-gradient(135deg, #9333EA, #06B6D4);
+            background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .back-button:hover {
-            border-color: #EC4899;
+            border-color: var(--accent-1);
             transform: translateX(-5px);
-            color: #FFFFFF;
+            color: var(--text-primary);
         }
 
         /* ===== HERO SECTION ===== */
@@ -84,7 +164,7 @@
             left: -10%;
             width: 120%;
             height: 120%;
-            background: radial-gradient(circle, rgba(236, 72, 153, 0.2), transparent 50%);
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.15), transparent 50%);
             filter: blur(60px);
             z-index: -1;
         }
@@ -95,7 +175,7 @@
             line-height: 1.1;
             letter-spacing: -0.02em;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #FFFFFF, #EC4899, #9333EA, #06B6D4);
+            background: linear-gradient(135deg, #FFFFFF, var(--accent-1), var(--accent-2), var(--accent-3));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             max-width: 900px;
@@ -103,7 +183,7 @@
 
         .hero-subtitle {
             font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
             max-width: 700px;
             margin: 0 auto 30px;
             font-weight: 300;
@@ -121,31 +201,31 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: linear-gradient(135deg, #EC4899, #9333EA);
-            color: #FFFFFF;
+            background: var(--accent-gradient);
+            color: #0F172A;
+            font-weight: 700;
             padding: 14px 32px;
             border-radius: 50px;
             font-size: 1rem;
-            font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease;
             border: none;
-            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
+            box-shadow: 0 10px 25px var(--shadow-glow);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.5);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.5);
         }
 
         .btn-secondary {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #FFFFFF;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
             padding: 14px 32px;
             border-radius: 50px;
             font-size: 1rem;
@@ -155,16 +235,16 @@
         }
 
         .btn-secondary:hover {
-            border-color: #06B6D4;
-            background: rgba(6, 182, 212, 0.1);
+            border-color: var(--accent-1);
+            background: rgba(255, 215, 0, 0.1);
             transform: translateY(-3px);
         }
 
         /* ===== SEÇÃO PARA QUEM É ===== */
         .target-section {
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
             border-radius: 40px;
             padding: 40px;
             margin-bottom: 60px;
@@ -172,12 +252,12 @@
 
         .section-tag {
             display: inline-block;
-            background: linear-gradient(135deg, #EC4899, #9333EA);
-            color: #FFFFFF;
+            background: var(--accent-gradient);
+            color: #0F172A;
+            font-weight: 700;
             padding: 6px 16px;
             border-radius: 40px;
             font-size: 0.8rem;
-            font-weight: 600;
             letter-spacing: 0.5px;
             margin-bottom: 20px;
         }
@@ -193,21 +273,21 @@
             align-items: center;
             gap: 12px;
             padding: 16px;
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--card-bg);
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
         }
 
         .target-item i {
             font-size: 1.5rem;
-            background: linear-gradient(135deg, #EC4899, #9333EA);
+            background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .target-item span {
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-primary);
         }
 
         /* ===== SEÇÕES DE SERVIÇOS ===== */
@@ -215,7 +295,7 @@
             font-size: 2.5rem;
             font-weight: 600;
             margin-bottom: 40px;
-            background: linear-gradient(135deg, #FFFFFF, #EC4899);
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-1));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: inline-block;
@@ -229,9 +309,9 @@
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
             border-radius: 30px;
             padding: 32px;
             transition: all 0.3s ease;
@@ -246,7 +326,7 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, #EC4899, #9333EA, #06B6D4);
+            background: var(--accent-gradient);
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
@@ -257,15 +337,15 @@
 
         .service-card:hover {
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(236, 72, 153, 0.2);
-            box-shadow: 0 20px 40px -15px rgba(147, 51, 234, 0.3);
+            background: var(--card-bg-hover);
+            border-color: var(--border-color-hover);
+            box-shadow: 0 20px 40px -15px var(--shadow-glow);
         }
 
         .service-icon {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #EC4899, #06B6D4);
+            background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -274,12 +354,12 @@
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 12px;
-            color: #FFFFFF;
+            color: var(--text-primary);
         }
 
         .service-description {
             font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--text-secondary);
             margin-bottom: 20px;
         }
 
@@ -290,7 +370,7 @@
 
         .bullet-list li {
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-primary);
             margin-bottom: 12px;
             display: flex;
             align-items: center;
@@ -298,7 +378,7 @@
         }
 
         .bullet-list li i {
-            color: #EC4899;
+            color: var(--accent-1);
             font-size: 1rem;
         }
 
@@ -306,9 +386,9 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #FFFFFF;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
             padding: 10px 24px;
             border-radius: 40px;
             font-size: 0.9rem;
@@ -320,8 +400,10 @@
         }
 
         .btn-service:hover {
-            background: linear-gradient(135deg, #EC4899, #9333EA);
+            background: var(--accent-gradient);
             border-color: transparent;
+            color: #0F172A;
+            font-weight: 700;
             transform: translateY(-2px);
         }
 
@@ -334,8 +416,8 @@
         }
 
         .comp-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 24px;
             text-align: center;
@@ -343,7 +425,7 @@
 
         .comp-card i {
             font-size: 2rem;
-            background: linear-gradient(135deg, #06B6D4, #9333EA);
+            background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 12px;
@@ -351,13 +433,13 @@
 
         .comp-card h4 {
             font-size: 1rem;
-            color: #FFFFFF;
+            color: var(--text-primary);
             margin-bottom: 4px;
         }
 
         .comp-card p {
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--text-secondary);
         }
 
         /* ===== PROCESSO ===== */
@@ -369,8 +451,8 @@
         }
 
         .process-step {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 20px;
             text-align: center;
@@ -380,34 +462,36 @@
         .step-number {
             width: 30px;
             height: 30px;
-            background: linear-gradient(135deg, #EC4899, #9333EA);
+            background: var(--accent-gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
+            color: #0F172A;
             margin: 0 auto 12px;
         }
 
         .process-step p {
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-primary);
         }
 
         .prazo-medio {
             text-align: center;
             margin-top: 20px;
             padding: 15px;
-            background: rgba(6, 182, 212, 0.1);
+            background: rgba(255, 215, 0, 0.1);
             border-radius: 50px;
-            color: #06B6D4;
+            color: var(--accent-1);
             font-weight: 500;
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
         /* ===== INVESTIMENTO ===== */
         .investment-box {
-            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(147, 51, 234, 0.1));
-            border: 1px solid rgba(236, 72, 153, 0.2);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(245, 158, 11, 0.1));
+            border: 1px solid rgba(255, 215, 0, 0.2);
             border-radius: 30px;
             padding: 40px;
             margin: 40px 0;
@@ -416,7 +500,7 @@
 
         .investment-text {
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-secondary);
             max-width: 600px;
             margin: 20px auto;
         }
@@ -429,12 +513,12 @@
         }
 
         .factor-item {
-            background: rgba(0, 0, 0, 0.3);
+            background: var(--card-bg);
             padding: 15px;
             border-radius: 16px;
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
         }
 
         .payment-grid {
@@ -445,8 +529,8 @@
         }
 
         .payment-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 20px;
             display: flex;
@@ -456,14 +540,18 @@
 
         .payment-item i {
             font-size: 1.8rem;
-            background: linear-gradient(135deg, #EC4899, #06B6D4);
+            background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
+        .payment-item span {
+            color: var(--text-primary);
+        }
+
         /* ===== SEÇÃO DE CONVERSÃO ===== */
         .conversion-section {
-            background: linear-gradient(135deg, #9333EA, #EC4899, #06B6D4);
+            background: var(--accent-gradient);
             border-radius: 40px;
             padding: 60px;
             margin: 60px 0;
@@ -479,7 +567,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2), transparent 50%);
+            background: radial-gradient(circle, rgba(255,255,255,0.3), transparent 50%);
             animation: rotate 20s linear infinite;
         }
 
@@ -497,14 +585,15 @@
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 20px;
-            color: #FFFFFF;
+            color: #0F172A;
             line-height: 1.2;
         }
 
         .conversion-subtitle {
             font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: #0F172A;
             margin-bottom: 30px;
+            opacity: 0.9;
         }
 
         .conversion-buttons {
@@ -515,8 +604,8 @@
         }
 
         .btn-conversion-primary {
-            background: #FFFFFF;
-            color: #9333EA;
+            background: #0F172A;
+            color: #FFD700;
             padding: 16px 40px;
             border-radius: 50px;
             font-size: 1.1rem;
@@ -531,17 +620,18 @@
         .btn-conversion-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            background: #000000;
         }
 
         .btn-conversion-secondary {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.2);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #FFFFFF;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #0F172A;
             padding: 16px 40px;
             border-radius: 50px;
             font-size: 1.1rem;
-            font-weight: 500;
+            font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease;
             display: inline-flex;
@@ -550,39 +640,42 @@
         }
 
         .btn-conversion-secondary:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.3);
             transform: translateY(-3px);
         }
 
-        /* ===== WHATSAPP FLOATING ===== */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 100;
-        }
+      /* ===== WHATSAPP FLOATING ===== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 100;
+}
 
-        .whatsapp-button {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: #FFFFFF;
-            padding: 16px 32px;
-            border-radius: 60px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-        }
+.whatsapp-button {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 2rem;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-        .whatsapp-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
-        }
+.whatsapp-button:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-button i {
+    font-size: 2rem;
+}
 
         /* ===== RESPONSIVIDADE ===== */
         @media (max-width: 968px) {
@@ -632,30 +725,45 @@
             .whatsapp-number {
                 display: none;
             }
+            
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+            }
         }
     </style>
 </head>
-<body>
+<body data-theme="dark">
+    <!-- THEME TOGGLE -->
+    <div class="theme-toggle">
+        <button class="theme-btn active" data-theme="dark" onclick="setTheme('dark')" aria-label="Mudar para tema escuro">
+            <i class="ph ph-moon"></i>
+        </button>
+        <button class="theme-btn" data-theme="light" onclick="setTheme('light')" aria-label="Mudar para tema claro">
+            <i class="ph ph-sun"></i>
+        </button>
+    </div>
+
     <div class="container">
         <!-- BOTÃO VOLTAR -->
-       <!-- BOTÃO VOLTAR - CORRIGIDO COM JS -->
-<a href="javascript:void(0);" onclick="voltarPagina()" class="back-button">
-    <i class="ph ph-arrow-left"></i>
-    Voltar
-</a>
+        <a href="javascript:void(0);" onclick="voltarPagina()" class="back-button">
+            <i class="ph ph-arrow-left"></i>
+            Voltar
+        </a>
+        
         <!-- HERO SECTION -->
         <div class="hero">
             <h1>Edição de Vídeos<br>Dinâmicos para Internet</h1>
             <p class="hero-subtitle">Transformo gravações comuns em vídeos envolventes, rápidos e pensados para gerar retenção, autoridade e crescimento digital.</p>
             <div class="hero-buttons">
-                <a href="#" class="btn-primary">
+                <a href="https://wa.me/558981264127?text=Olá%20Yuri%2C%20vi%20o%20site%20e%20quero%20solicitar%20um%20orçamento%20personalizado!" target="_blank" class="btn-primary">
                     <i class="ph ph-whatsapp-logo"></i>
                     Solicitar Orçamento
                 </a>
-                
             </div>
         </div>
-         <!-- SERVIÇOS PRINCIPAIS -->
+        
+        <!-- SERVIÇOS PRINCIPAIS -->
         <h2 class="section-title">🎞 Serviços Oferecidos</h2>
         <div class="services-grid">
             <!-- YouTube -->
@@ -671,7 +779,7 @@
                     <li><i class="ph ph-check"></i> Tratamento de cor</li>
                     <li><i class="ph ph-check"></i> Trilha sonora</li>
                 </ul>
-                <a href="#" class="btn-service">
+                <a href="https://wa.me/558981264127?text=Olá%20Yuri%2C%20quero%20editar%20meus%20vídeos%20para%20YouTube!" target="_blank" class="btn-service">
                     <i class="ph ph-whatsapp-logo"></i> Quero editar meus vídeos
                 </a>
             </div>
@@ -688,12 +796,12 @@
                     <li><i class="ph ph-check"></i> Formatação vertical</li>
                     <li><i class="ph ph-check"></i> Elementos de engajamento</li>
                 </ul>
-                <a href="#" class="btn-service">
+                <a href="https://wa.me/558981264127?text=Olá%20Yuri%2C%20quero%20criar%20cortes%20virais%20para%20Reels%20e%20TikTok!" target="_blank" class="btn-service">
                     <i class="ph ph-whatsapp-logo"></i> Quero criar cortes virais
                 </a>
             </div>
 
-            <!-- Aftermovies -->
+            <!-- Eventos -->
             <div class="service-card">
                 <i class="ph ph-calendar service-icon"></i>
                 <h3>Eventos</h3>
@@ -704,7 +812,7 @@
                     <li><i class="ph ph-check"></i> Ritmo cinematográfico</li>
                     <li><i class="ph ph-check"></i> Edição emocional</li>
                 </ul>
-                <a href="#" class="btn-service">
+                <a href="https://wa.me/558981264127?text=Olá%20Yuri%2C%20preciso%20de%20edição%20para%20meu%20evento!" target="_blank" class="btn-service">
                     <i class="ph ph-whatsapp-logo"></i> Solicitar edição para evento
                 </a>
             </div>
@@ -712,7 +820,7 @@
 
         <!-- SERVIÇOS COMPLEMENTARES -->
         <h2 class="section-title">🎨 Serviços Complementares</h2>
-        <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px;">Para fortalecer sua presença visual:</p>
+        <p style="color: var(--text-secondary); margin-bottom: 20px;">Para fortalecer sua presença visual:</p>
         <div class="complementary-grid">
             <div class="comp-card">
                 <i class="ph ph-image"></i>
@@ -736,10 +844,11 @@
             </div>
         </div>
         <div style="text-align: center; margin: 20px 0 40px;">
-            <a href="#" class="btn-primary">
+            <a href="https://wa.me/558981264127?text=Olá%20Yuri%2C%20quero%20conhecer%20seus%20serviços%20visuais!" target="_blank" class="btn-primary">
                 <i class="ph ph-whatsapp-logo"></i> Ver serviços visuais
             </a>
         </div>
+        
         <!-- PARA QUEM É -->
         <div class="target-section">
             <div class="section-tag">🚀 PARA QUEM É MEU TRABALHO</div>
@@ -766,8 +875,6 @@
                 </div>
             </div>
         </div>
-
-       
 
         <!-- PROCESSO -->
         <h2 class="section-title">⚙ Como Funciona</h2>
@@ -799,7 +906,7 @@
 
         <!-- INVESTIMENTO -->
         <div class="investment-box">
-            <h2 style="font-size: 2rem; margin-bottom: 20px;">💰 Investimento Personalizado</h2>
+            <h2 style="font-size: 2rem; margin-bottom: 20px; color: var(--text-primary);">💰 Investimento Personalizado</h2>
             <p class="investment-text">Cada projeto é orçado de forma personalizada, considerando:</p>
             
             <div class="factors-grid">
@@ -809,13 +916,13 @@
                 <div class="factor-item">Prazo de entrega</div>
             </div>
 
-            <p style="margin: 30px 0;">Entre em contato para receber proposta detalhada.</p>
+            <p style="margin: 30px 0; color: var(--text-primary);">Entre em contato para receber proposta detalhada.</p>
             
-            <a href="#" class="btn-primary" style="margin-bottom: 30px;">
+            <a href="https://wa.me/558981264127?text=Olá%20Yuri%2C%20quero%20receber%20uma%20proposta%20personalizada!" target="_blank" class="btn-primary" style="margin-bottom: 30px;">
                 <i class="ph ph-whatsapp-logo"></i> Solicitar Orçamento
             </a>
 
-            <h3 style="margin: 40px 0 20px;">💳 Condições de Pagamento</h3>
+            <h3 style="margin: 40px 0 20px; color: var(--text-primary);">💳 Condições de Pagamento</h3>
             <div class="payment-grid">
                 <div class="payment-item">
                     <i class="ph ph-arrow-circle-right"></i>
@@ -826,12 +933,12 @@
                     <span>50% na entrega final</span>
                 </div>
                 <div class="payment-item">
-                    <i class="ph ph-pix-logo"></i>
-                    <span>Pix</span>
+                    <i class="ph ph-bank"></i>
+                    <span>Pix / Transferência</span>
                 </div>
                 <div class="payment-item">
                     <i class="ph ph-credit-card"></i>
-                    <span>Cartão </span>
+                    <span>Cartão (consultar)</span>
                 </div>
             </div>
         </div>
@@ -840,15 +947,15 @@
         <div class="conversion-section">
             <div class="conversion-content">
                 <h2 class="conversion-title">Seus vídeos podem parecer amadores...</h2>
-                <h2 class="conversion-title" style="background: rgba(0,0,0,0.2); -webkit-background-clip: text; -webkit-text-fill-color: #FFFFFF;">ou podem parecer profissionais.</h2>
+                <h2 class="conversion-title" style="background: transparent; -webkit-text-fill-color: #0F172A;">ou podem parecer profissionais.</h2>
                 <p class="conversion-subtitle">A escolha é sua.</p>
                 
                 <div class="conversion-buttons">
-                    <a href="#" class="btn-conversion-primary">
+                    <a href="https://wa.me/558981264127?text=Olá%20Yuri%2C%20vamos%20conversar%20sobre%20meus%20vídeos!" target="_blank" class="btn-conversion-primary">
                         <i class="ph ph-whatsapp-logo"></i>
                         Falar no WhatsApp
                     </a>
-                    <a href="#" class="btn-conversion-secondary">
+                    <a href="https://wa.me/558981264127?text=Olá%20Yuri%2C%20quero%20solicitar%20um%20orçamento!" target="_blank" class="btn-conversion-secondary">
                         <i class="ph ph-paper-plane"></i>
                         Solicitar Orçamento
                     </a>
@@ -858,39 +965,58 @@
     </div>
 
     <!-- WHATSAPP FLOATING -->
-    <div class="whatsapp-float">
-        <a href="https://wa.me/558981264127?text=Ol%C3%A1%20Yuri%2C%20vi%20o%20site%20e%20quero%20editar%20meus%20v%C3%ADdeos!" target="_blank" class="whatsapp-button">
-            <i class="ph ph-whatsapp-logo"></i>
-            <span class="whatsapp-number">(89) 98126-4127</span>
-        </a>
-    </div>
+<!-- WHATSAPP FLOATING -->
+<div class="whatsapp-float">
+    <a href="https://wa.me/558981264127?text=Olá%20Yuri%2C%20vi%20seu%20perfil%20e%20quero%20conversar!" target="_blank" class="whatsapp-button">
+        <i class="ph ph-whatsapp-logo"></i>
+    </a>
+</div>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
- <script>
-    // Função para voltar à página anterior sem carregar telas de loading
-    function voltarPagina() {
-        // Verifica se há uma página anterior no histórico
-        if (window.history.length > 1) {
-            // Volta para a página anterior
-            window.history.back();
-        } else {
-            // Se não houver histórico, apenas mostra uma mensagem no console
-            // ou você pode redirecionar para uma seção específica
-            console.log("Não há página anterior");
+    <script>
+        // ===== THEME MANAGEMENT =====
+        function setTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
             
-            // Opcional: rolar para o topo da página atual
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            // Update active buttons
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-theme') === theme) {
+                    btn.classList.add('active');
+                }
             });
-            
-            // Opcional: mostrar um toast/mensagem para o usuário
-            // alert("Você já está na página inicial");
-        }
-    }
 
-    // Inicializa os ícones do Lucide (já existente no seu código)
-    lucide.createIcons();
-</script>
+            // Save preference
+            localStorage.setItem('theme', theme);
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        setTheme(savedTheme);
+
+        // ===== FUNÇÃO VOLTAR =====
+        function voltarPagina() {
+            if (window.history.length > 1) {
+                // Feedback visual
+                const backBtn = document.querySelector('.back-button');
+                backBtn.style.transform = 'translateX(-10px)';
+                setTimeout(() => {
+                    window.history.back();
+                }, 100);
+            } else {
+                // Mensagem sutil se não houver histórico
+                const msg = document.createElement('div');
+                msg.textContent = 'Você já está na página inicial';
+                msg.style.cssText = 'position:fixed; top:20px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.8); color:white; padding:10px 20px; border-radius:40px; z-index:9999; backdrop-filter:blur(10px);';
+                document.body.appendChild(msg);
+                setTimeout(() => msg.remove(), 2000);
+                
+                // Rolar para o topo
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    </script>
 </body>
 </html>
