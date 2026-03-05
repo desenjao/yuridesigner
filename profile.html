@@ -2,13 +2,13 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yuri Santos | Perfil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Yuri Santos | Direção Audiovisual</title>
     
     <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- PHOSPHOR ICONS -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -21,16 +21,526 @@
         }
 
         body {
-            background: #000000;
-            font-family: 'Inter', sans-serif;
+            background: #0B0B13;
+            font-family: 'Space Grotesk', sans-serif;
             color: #FFFFFF;
-            line-height: 1.6;
+            line-height: 1.4;
+            overflow-x: hidden;
         }
 
+        /* ===== EFEITOS GLOBAIS ===== */
+        .glow-text {
+            text-shadow: 0 0 20px rgba(108, 59, 255, 0.5);
+        }
+
+        .glow-box {
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #6C3BFF, #A855F7, #FF5AD9);
+        }
+
+        /* ===== CONTAINER ===== */
         .container {
-            max-width: 1200px;
+            max-width: 480px;
             margin: 0 auto;
-            padding: 60px 24px;
+            padding: 0 20px 40px;
+            position: relative;
+        }
+
+        /* ===== SVGs DE FUNDO ===== */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .bg-particles svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            padding: 80px 0 40px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 50vh;
+            border-radius: 30px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 2px solid rgba(168, 85, 247, 0.3);
+            box-shadow: 0 20px 40px rgba(108, 59, 255, 0.3);
+            position: relative;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 50%, #0B0B13 100%);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #FFFFFF, #A855F7, #FF5AD9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+
+        /* ===== STATS ===== */
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-item {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 20px;
+            padding: 15px 5px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #A855F7, #FF5AD9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== BOTÕES ===== */
+        .buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-primary {
+            flex: 2;
+            background: linear-gradient(135deg, #6C3BFF, #A855F7);
+            color: white;
+            padding: 16px 0;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 10px 30px rgba(108, 59, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 16px 0;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* ===== SEÇÃO SOBRE ===== */
+        .section {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #FFFFFF, #A855F7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 30px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.1), transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .about-image-small {
+            width: 100px;
+            height: 100px;
+            border-radius: 30px;
+            overflow: hidden;
+            border: 2px solid #A855F7;
+            margin-bottom: 20px;
+        }
+
+        .about-image-small img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .about-icons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .about-icon-item {
+            text-align: center;
+        }
+
+        .about-icon-item i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #A855F7, #FF5AD9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-icon-item span {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== ESPECIALIDADES GRID ===== */
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .specialty-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 25px;
+            padding: 25px 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .specialty-card:hover {
+            transform: translateY(-5px);
+            border-color: #FF5AD9;
+            box-shadow: 0 10px 30px rgba(255, 90, 217, 0.2);
+        }
+
+        .specialty-card i {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #A855F7, #FF5AD9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .specialty-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #6C3BFF, #FF5AD9);
+            box-shadow: 0 0 15px #A855F7;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-year {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6C3BFF, #A855F7);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 0 30px rgba(108, 59, 255, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 20px;
+            padding: 15px;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #FF5AD9;
+        }
+
+        .timeline-content p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .timeline-image {
+            margin-left: 80px;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid #A855F7;
+            width: calc(100% - 80px);
+        }
+
+        .timeline-image img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        /* ===== DIFERENCIAIS ===== */
+        .differentials {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .diff-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .diff-card i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #A855F7, #FF5AD9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .diff-card h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .diff-card p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== QUOTE SECTION ===== */
+        .quote-section {
+            position: relative;
+            margin: 60px 0;
+            height: 400px;
+            border-radius: 40px;
+            overflow: hidden;
+        }
+
+        .quote-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .quote-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(11, 11, 19, 0.9), rgba(108, 59, 255, 0.3));
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+        }
+
+        .quote-text {
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 1.3;
+            color: white;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .quote-text span {
+            color: #FF5AD9;
+        }
+
+        /* ===== CTA FINAL ===== */
+        .cta-final {
+            background: linear-gradient(135deg, #6C3BFF, #A855F7, #FF5AD9);
+            border-radius: 40px;
+            padding: 50px 30px;
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2), transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .cta-final h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+        }
+
+        .btn-cta-primary {
+            background: white;
+            color: #6C3BFF;
+            padding: 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-cta-secondary {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* ===== WHATSAPP FLOATING ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .whatsapp-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         /* ===== BOTÃO VOLTAR ===== */
@@ -38,479 +548,53 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 40px;
-            transition: all 0.2s ease;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 8px 16px;
-            border-radius: 40px;
-        }
-
-        .back-button i {
-            font-size: 1.1rem;
-            color: #D4AF37;
-        }
-
-        .back-button:hover {
-            color: #FFFFFF;
-            border-color: #D4AF37;
-            transform: translateX(-5px);
-        }
-
-        /* ===== HEADER ===== */
-        .header {
-            margin-bottom: 60px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .header-left {
-            max-width: 600px;
-        }
-
-        .header-line {
-            width: 60px;
-            height: 1px;
-            background: linear-gradient(90deg, #D4AF37, #00F0FF);
-            margin-bottom: 24px;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, #FFFFFF, #D4AF37, #00F0FF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-
-        .header-tag {
-            display: inline-block;
-            padding: 6px 16px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 40px;
-            font-size: 0.9rem;
-            color: #D4AF37;
-            margin-bottom: 16px;
-        }
-
-        .header-description {
-            font-size: 1.1rem;
-            font-weight: 300;
             color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-        }
-
-        .header-stats {
-            display: flex;
-            gap: 40px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 30px;
-            padding: 24px 40px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, #D4AF37, #00F0FF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1;
-            margin-bottom: 4px;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.5);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* ===== SOBRE ===== */
-        .about-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 80px;
-        }
-
-        .about-title {
-            font-size: 2rem;
-            font-weight: 500;
-            margin-bottom: 24px;
-            color: #FFFFFF;
-        }
-
-        .about-text {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 24px;
-        }
-
-        .about-highlight {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 240, 255, 0.05));
-            border-left: 3px solid #D4AF37;
-            padding: 24px;
-            border-radius: 0 16px 16px 0;
-            margin-top: 30px;
-        }
-
-        .about-highlight p {
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-        }
-
-        .about-highlight span {
-            color: #D4AF37;
-            font-weight: 500;
-        }
-
-        /* ===== VALORES ===== */
-        .values-section {
-            margin-bottom: 80px;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 40px;
-        }
-
-        .section-header h2 {
-            font-size: 1.8rem;
-            font-weight: 500;
-            color: #FFFFFF;
-        }
-
-        .section-number {
-            font-size: 0.9rem;
-            background: linear-gradient(135deg, #D4AF37, #00F0FF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 600;
-        }
-
-        .section-line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(212, 175, 55, 0.3), rgba(0, 240, 255, 0.3), transparent);
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-
-        .value-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 24px;
-            padding: 32px 24px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .value-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg, #D4AF37, #B829FF, #00F0FF);
-            border-radius: 26px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-        }
-
-        .value-card:hover::before {
-            opacity: 0.3;
-        }
-
-        .value-card:hover {
-            transform: translateY(-5px);
-            border-color: transparent;
-        }
-
-        .value-icon {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, #D4AF37, #00F0FF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-        }
-
-        .value-card h3 {
-            font-size: 1.3rem;
-            font-weight: 500;
-            margin-bottom: 12px;
-            color: #FFFFFF;
-        }
-
-        .value-card p {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.6;
-        }
-
-        /* ===== TRAJETÓRIA ===== */
-        .timeline-section {
-            margin-bottom: 80px;
-        }
-
-        .timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: 30px;
-            align-items: flex-start;
-        }
-
-        .timeline-year {
-            min-width: 120px;
-            font-size: 1.5rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, #D4AF37, #00F0FF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .timeline-content {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            padding: 24px;
-        }
-
-        .timeline-content h4 {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: #FFFFFF;
-            margin-bottom: 8px;
-        }
-
-        .timeline-content p {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.95rem;
-        }
-
-        /* ===== SKILLS ===== */
-        .skills-section {
-            margin-bottom: 80px;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-
-        .skill-category {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 24px;
-            padding: 28px;
-        }
-
-        .skill-category h3 {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: #D4AF37;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .skill-category h3 i {
-            font-size: 1.4rem;
-        }
-
-        .skill-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .skill-tag {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 40px;
-            padding: 8px 16px;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-            transition: all 0.2s ease;
-        }
-
-        .skill-tag:hover {
-            border-color: #00F0FF;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.2);
-        }
-
-        /* ===== WHATSAPP FLOATING ===== */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 100;
-        }
-
-        .whatsapp-button {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: #FFFFFF;
-            padding: 14px 28px;
-            border-radius: 60px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-            transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-        }
-
-        .whatsapp-button i {
-            font-size: 1.5rem;
-        }
-
-        .whatsapp-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
-        }
-
-        .whatsapp-number {
+            padding: 8px 20px;
+            border-radius: 40px;
             font-size: 0.9rem;
-            opacity: 0.9;
-            letter-spacing: 0.5px;
-        }
-
-        /* ===== RESPONSIVIDADE ===== */
-        @media (max-width: 968px) {
-            h1 { font-size: 3rem; }
-            
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .header-stats {
-                width: 100%;
-                justify-content: space-around;
-            }
-            
-            .about-section {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .values-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 640px) {
-            h1 { font-size: 2.2rem; }
-            
-            .container { padding: 40px 20px; }
-            
-            .header-stats {
-                flex-direction: column;
-                gap: 20px;
-                padding: 20px;
-            }
-            
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .timeline-item {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .timeline-year {
-                min-width: auto;
-            }
-            
-            .whatsapp-float {
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .whatsapp-button {
-                padding: 14px;
-                border-radius: 50px;
-            }
-            
-            .whatsapp-button i {
-                margin: 0;
-            }
-            
-            .whatsapp-number {
-                display: none;
-            }
-            
-            .back-button {
-                margin-bottom: 30px;
-            }
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <!-- PARTICULAS SVG DE FUNDO -->
+    <div class="bg-particles">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+            <circle cx="20" cy="20" r="2" fill="#A855F7" opacity="0.3">
+                <animate attributeName="r" values="2;3;2" dur="3s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="80" cy="40" r="3" fill="#FF5AD9" opacity="0.3">
+                <animate attributeName="r" values="3;5;3" dur="4s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="50" cy="80" r="2" fill="#6C3BFF" opacity="0.3">
+                <animate attributeName="r" values="2;4;2" dur="3.5s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="90" cy="90" r="2" fill="#A855F7" opacity="0.3">
+                <animate attributeName="r" values="2;3;2" dur="4.2s" repeatCount="indefinite" />
+            </circle>
+        </svg>
+    </div>
+
     <div class="container">
         <!-- BOTÃO VOLTAR -->
-        <a href="index.html" class="back-button">
+        <button onclick="window.history.back()" class="back-button">
             <i class="ph ph-arrow-left"></i>
-            Voltar ao início
-        </a>
+            Voltar
+        </button>
 
-        <!-- HEADER COM STATS -->
-        <div class="header">
-            <div class="header-left">
-                <div class="header-line"></div>
-                <div class="header-tag">✧ diretor audiovisual</div>
-                <h1>YURI SANTOS</h1>
-                <p class="header-description">
-                    Especialista em contar histórias através da edição e da música. 
-                    Transformo momentos em memórias e marcas em experiências.
-                </p>
+        <!-- HERO - FOTO 1 -->
+        <div class="hero">
+            <div class="hero-image">
+                <img src="img/IMG_5588.webp"Yuri Santos">
             </div>
-
-            <div class="header-stats">
+            <h1>Yuri Santos</h1>
+            <h2>Direção Audiovisual &<br>Narrativa Estratégica</h2>
+            
+            <div class="stats">
                 <div class="stat-item">
                     <div class="stat-number">8+</div>
                     <div class="stat-label">anos</div>
@@ -520,179 +604,176 @@
                     <div class="stat-label">projetos</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">entregas</div>
+                    <div class="stat-number">Brasil</div>
+                    <div class="stat-label">todo país</div>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <a href="#" class="btn-primary">
+                    <i class="ph ph-whatsapp-logo"></i> WhatsApp
+                </a>
+        
+            </div>
+        </div>
+
+        <!-- SOBRE - FOTO 2 -->
+        <div class="section">
+            <h2 class="section-title">Mais que um editor.<br>Um diretor.</h2>
+            <div class="about-card">
+                <div class="about-image-small">
+                    <img src="img/IMG_5591.webp" alt="Yuri">
+                </div>
+                <p class="about-text">
+                    Meu trabalho começa antes da timeline: entender a história, o ritmo e a emoção que o vídeo precisa transmitir.
+                </p>
+                <div class="about-icons">
+                    <div class="about-icon-item">
+                        <i class="ph ph-film-script"></i>
+                        <span>Narrativa</span>
+                    </div>
+                    <div class="about-icon-item">
+                        <i class="ph ph-music-note"></i>
+                        <span>Direção musical</span>
+                    </div>
+                    <div class="about-icon-item">
+                        <i class="ph ph-chart-line"></i>
+                        <span>Estratégia</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- SOBRE -->
-        <div class="about-section">
-            <div>
-                <h2 class="about-title">Quem é Yuri?</h2>
-                <p class="about-text">
-                    Editor de vídeo especializado em transformar histórias em experiências visuais 
-                    memoráveis. Minha abordagem vai além do corte: cada projeto é pensado como 
-                    uma narrativa única, onde a música e o ritmo conduzem a emoção.
-                </p>
-                <p class="about-text">
-                    Comecei editando eventos há 8 anos e, desde então, expandi minha atuação para 
-                    marcas e agências, sempre mantendo a essência: contar histórias de forma 
-                    autêntica e estratégica.
-                </p>
-                <div class="about-highlight">
-                    <p>
-                        "<span>A música não entra pra preencher.</span> Ela conduz a experiência. 
-                        É assim que construo cada projeto."
-                    </p>
+        <!-- ESPECIALIDADES GRID -->
+        <div class="section">
+            <h2 class="section-title">Especialidades</h2>
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <i class="ph ph-camera"></i>
+                    <h3>Edição Cinematográfica</h3>
                 </div>
-            </div>
-
-            <div>
-                <h2 class="about-title">Minha abordagem</h2>
-                <p class="about-text">
-                    Acredito que um vídeo só funciona quando emoção e estratégia caminham juntas. 
-                    Por isso, meu processo começa antes da edição: na escolha da trilha certa, 
-                    no entendimento do público e no objetivo real do projeto.
-                </p>
-                <p class="about-text">
-                    Seja um casamento ou um vídeo institucional, o resultado precisa ser 
-                    autêntico, impactante e, acima de tudo, memorável.
-                </p>
-                <div style="margin-top: 30px;">
-                    <img src="#" alt="" style="width: 100%; height: 200px; background: rgba(212, 175, 55, 0.1); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3); border: 1px dashed rgba(212,175,55,0.3);">
-                    <!-- Espaço para foto ou imagem -->
+                <div class="specialty-card">
+                    <i class="ph ph-instagram-logo"></i>
+                    <h3>Conteúdo Redes</h3>
+                </div>
+                <div class="specialty-card">
+                    <i class="ph ph-music-note"></i>
+                    <h3>Direção Musical</h3>
+                </div>
+                <div class="specialty-card">
+                    <i class="ph ph-codes"></i>
+                    <h3>Motion Design</h3>
+                </div>
+                <div class="specialty-card">
+                    <i class="ph ph-target"></i>
+                    <h3>Vídeos para Ads</h3>
+                </div>
+                <div class="specialty-card">
+                    <i class="ph ph-youtube-logo"></i>
+                    <h3>Crescimento Canais</h3>
                 </div>
             </div>
         </div>
 
-        <!-- VALORES -->
-        <div class="values-section">
-            <div class="section-header">
-                <span class="section-number">01</span>
-                <h2>Valores</h2>
-                <div class="section-line"></div>
-            </div>
-
-            <div class="values-grid">
-                <div class="value-card">
-                    <i class="ph ph-heart value-icon"></i>
-                    <h3>Emoção</h3>
-                    <p>Cada corte é pensado para gerar conexão verdadeira com quem assiste.</p>
-                </div>
-
-                <div class="value-card">
-                    <i class="ph ph-target value-icon"></i>
-                    <h3>Estratégia</h3>
-                    <p>Vídeo sem objetivo é entretenimento. O meu tem propósito definido.</p>
-                </div>
-
-                <div class="value-card">
-                    <i class="ph ph-music-note value-icon"></i>
-                    <h3>Música</h3>
-                    <p>A trilha certa transforma um bom vídeo em uma experiência inesquecível.</p>
-                </div>
-
-                <div class="value-card">
-                    <i class="ph ph-infinity value-icon"></i>
-                    <h3>Atemporalidade</h3>
-                    <p>Meus vídeos envelhecem bem. São feitos para serem revistos.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- TRAJETÓRIA -->
-        <div class="timeline-section">
-            <div class="section-header">
-                <span class="section-number">02</span>
-                <h2>Trajetória</h2>
-                <div class="section-line"></div>
-            </div>
-
+        <!-- TRAJETÓRIA + FOTO 3 -->
+        <div class="section">
+            <h2 class="section-title">Trajetória</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-year">2016</div>
                     <div class="timeline-content">
-                        <h4>Primeiros passos</h4>
-                        <p>Início na edição de eventos sociais. Casamentos, aniversários e batizados.</p>
+                        <h4>Início</h4>
+                        <p>Eventos sociais e narrativa emocional</p>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-year">2019</div>
                     <div class="timeline-content">
-                        <h4>Expansão para marcas</h4>
-                        <p>Primeiros trabalhos com vídeos institucionais e conteúdo para redes sociais.</p>
+                        <h4>Expansão</h4>
+                        <p>Vídeos para empresas e conteúdo digital</p>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-year">2022</div>
                     <div class="timeline-content">
-                        <h4>Direção musical</h4>
-                        <p>Especialização em trilha sonora estratégica. A música passa a ser o ponto de partida.</p>
+                        <h4>Especialização</h4>
+                        <p>Storytelling e direção musical</p>
                     </div>
                 </div>
-
+                <div class="timeline-image">
+                    <img src="img/IMG_5593.webp" alt="Yuri trajetória">
+                </div>
                 <div class="timeline-item">
-                    <div class="timeline-year">2024</div>
+                    <div class="timeline-year">2026</div>
                     <div class="timeline-content">
                         <h4>Hoje</h4>
-                        <p>Atendendo clientes em todo o Brasil, sempre com foco em contar histórias que importam.</p>
+                        <p>Conteúdo digital e desenvolvimento de canais</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SKILLS -->
-        <div class="skills-section">
-            <div class="section-header">
-                <span class="section-number">03</span>
-                <h2>Skills</h2>
-                <div class="section-line"></div>
-            </div>
-
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="ph ph-video"></i> Edição</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">Premiere Pro</span>
-                        <span class="skill-tag">DaVinci Resolve</span>
-                        <span class="skill-tag">Final Cut</span>
-                        <span class="skill-tag">After Effects</span>
-                        <span class="skill-tag">Color Grading</span>
-                        <span class="skill-tag">Motion Design</span>
+        <!-- DIFERENCIAIS -->
+        <div class="section">
+            <h2 class="section-title">Diferenciais</h2>
+            <div class="differentials">
+                <div class="diff-card">
+                    <i class="ph ph-heart"></i>
+                    <div>
+                        <h4>Narrativa emocional</h4>
+                        <p>Vídeos que conectam pessoas e marcas</p>
                     </div>
                 </div>
-
-                <div class="skill-category">
-                    <h3><i class="ph ph-music-note"></i> Áudio</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">Direção Musical</span>
-                        <span class="skill-tag">Sound Design</span>
-                        <span class="skill-tag">Mixagem</span>
-                        <span class="skill-tag">Edição de áudio</span>
-                        <span class="skill-tag">Trilha original</span>
+                <div class="diff-card">
+                    <i class="ph ph-timer"></i>
+                    <div>
+                        <h4>Ritmo e direção musical</h4>
+                        <p>Trilha e cortes sincronizados</p>
+                    </div>
+                </div>
+                <div class="diff-card">
+                    <i class="ph ph-chart-bar"></i>
+                    <div>
+                        <h4>Conteúdo estratégico</h4>
+                        <p>Pensado para retenção e alcance</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- BOTÃO CONTATO -->
-        <div style="text-align: center; margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(212, 175, 55, 0.2);">
-            <a href="#" onclick="window.open('https://wa.me/558981264127?text=Ol%C3%A1%20Yuri%2C%20vi%20seu%20perfil%20e%20quero%20conversar%20sobre%20um%20projeto', '_blank')" style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #D4AF37, #B829FF, #00F0FF); color: #000000; padding: 16px 48px; border-radius: 50px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: all 0.3s ease; border: none;">
-                <i class="ph ph-whatsapp-logo"></i>
-                Vamos conversar
-            </a>
+        <!-- QUOTE + FOTO 4 -->
+        <div class="quote-section">
+            <img src="img/IMG_5607.webp" alt="Yuri" class="quote-image">
+            <div class="quote-overlay">
+                <div class="quote-text">
+                    "Um vídeo não precisa <br>apenas ser bonito. <br><span>Ele precisa fazer sentir</span> algo."
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA FINAL -->
+        <div class="cta-final">
+            <h3>Vamos criar algo incrível juntos?</h3>
+            <div class="cta-buttons">
+                <a href="#" class="btn-cta-primary">
+                    <i class="ph ph-whatsapp-logo"></i> Falar no WhatsApp
+                </a>
+                <a href="#" class="btn-cta-secondary">
+                    <i class="ph ph-paper-plane"></i> Enviar Projeto
+                </a>
+            </div>
         </div>
     </div>
 
-    <!-- WHATSAPP FLOATING BUTTON -->
+    <!-- WHATSAPP FLOATING -->
     <div class="whatsapp-float">
-        <a href="https://wa.me/558981264127?text=Ol%C3%A1%20Yuri%2C%20vi%20seu%20perfil%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es" target="_blank" class="whatsapp-button">
+        <a href="https://wa.me/558981264127" target="_blank" class="whatsapp-button">
             <i class="ph ph-whatsapp-logo"></i>
-            <span class="whatsapp-number">(89) 98126-4127</span>
         </a>
     </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
