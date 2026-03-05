@@ -49,7 +49,7 @@
             --text-primary: #1D1D1F;
             --text-secondary: #424245;
             --accent: #FFD700;
-            --accent-gradient: linear-gradient(135deg, #FFD700;, #A58BD4);
+            --accent-gradient: linear-gradient(135deg, #FFD700, #A58BD4);
             --card-bg: rgba(255, 255, 255, 0.7);
             --border-color: rgba(0, 0, 0, 0.1);
             --shadow-color: rgba(0, 0, 0, 0.1);
@@ -64,6 +64,16 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.3s ease, color 0.3s ease;
+            /* OTIMIZADO: Remove trava e mantém scroll suave */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* OTIMIZAÇÃO: GPU acceleration para elementos que se movem */
+        .hero, .hero-bottom, .btn-card, .whatsapp-float, .social-links a {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000;
+            -webkit-font-smoothing: subpixel-antialiased;
         }
 
         /* ===== WELCOME SCREEN (LIQUID GLASS) ===== */
@@ -189,12 +199,14 @@
             z-index: 10001;
             background: var(--card-bg);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
             border-radius: 40px;
             padding: 8px;
             display: flex;
             gap: 4px;
             box-shadow: 0 4px 15px var(--shadow-color);
+            transform: translateZ(0);
         }
 
         .theme-toggle button {
@@ -226,13 +238,17 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
+            /* OTIMIZADO: Background fallback suave */
+            background: radial-gradient(circle at 50% 50%, rgba(165,139,212,0.05), transparent 70%);
         }
 
         .particle {
             position: absolute;
             border-radius: 50%;
             filter: blur(1px);
-            transition: transform 0.1s ease-out;
+            transition: none;
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .particle-layer-1 { background: rgba(165, 139, 212, 0.1); filter: blur(3px); }
@@ -242,6 +258,24 @@
         [data-theme="light"] .particle-layer-1 { background: rgba(123, 104, 181, 0.1); }
         [data-theme="light"] .particle-layer-2 { background: rgba(0, 0, 0, 0.05); }
         [data-theme="light"] .particle-layer-3 { background: rgba(123, 104, 181, 0.15); }
+
+        /* OTIMIZAÇÃO MOBILE: Mantém visual mas remove blur pesado */
+        @media (max-width: 768px) {
+            .theme-toggle, .social-links a {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-secondary) !important;
+                border: 1px solid var(--border-color) !important;
+            }
+            
+            .particle {
+                display: none;
+            }
+            
+            .whatsapp-float {
+                animation: none;
+            }
+        }
 
         /* ===== LAYOUT PRINCIPAL ===== */
         .container {
@@ -253,6 +287,7 @@
             flex-direction: column;
             align-items: center;
             gap: var(--spacing-md);
+            transform: translateZ(0);
         }
 
         /* ===== HERO TOP ===== */
@@ -266,6 +301,7 @@
             overflow: hidden;
             border-radius: 0 0 30px 30px;
             box-shadow: 0 10px 30px var(--shadow-color);
+            contain: paint;
         }
 
         .hero img {
@@ -274,7 +310,8 @@
             object-fit: cover;
             object-position: center top;
             display: block;
-            transition: transform 0.3s ease;
+            transition: none;
+            transform: translateZ(0);
         }
 
         /* ===== INTRO & SCROLL INDICATOR ===== */
@@ -319,6 +356,8 @@
             align-items: center;
             justify-content: center;
             border: 1px solid var(--border-color);
+            will-change: transform;
+            backface-visibility: hidden;
         }
 
         @keyframes bounce {
@@ -340,10 +379,11 @@
             width: 100%;
             text-decoration: none;
             display: block;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             border: none !important;
             background: transparent !important;
-            overflow: visible !important; 
+            overflow: visible !important;
+            contain: paint;
         }
 
         .btn-card img {
@@ -351,7 +391,8 @@
             height: auto;
             display: block;
             filter: drop-shadow(0 8px 12px var(--shadow-color));
-            transition: transform 0.5s ease;
+            transition: filter 0.5s ease;
+            backface-visibility: hidden;
         }
 
         .btn-card:hover {
@@ -360,6 +401,10 @@
 
         .btn-card:hover img {
             filter: drop-shadow(0 12px 20px rgba(165, 139, 212, 0.4));
+        }
+
+        .btn-card:active {
+            transform: translateY(-2px) scale(0.98);
         }
 
         /* ===== CTA & SOCIAL ===== */
@@ -390,6 +435,7 @@
             transition: 0.3s;
             background: var(--card-bg);
             backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
 
         .social-links a:hover {
@@ -397,6 +443,10 @@
             border-color: transparent;
             transform: translateY(-3px);
             color: white;
+        }
+
+        .social-links a:active {
+            transform: scale(0.95);
         }
 
         /* ===== HERO BOTTOM ===== */
@@ -408,6 +458,7 @@
             overflow: hidden;
             position: relative;
             background-color: var(--bg-primary);
+            contain: paint;
         }
 
         .hero-bottom img {
@@ -416,6 +467,7 @@
             object-fit: cover;
             object-position: center top;
             display: block;
+            transform: translateZ(0);
         }
 
         /* ===== WHATSAPP FLOAT & MODAL ===== */
@@ -434,6 +486,7 @@
             animation: pulse 2s infinite;
             cursor: pointer;
             border: 1px solid rgba(255,255,255,0.2);
+            contain: paint;
         }
 
         .whatsapp-icon { width: 32px; height: 32px; fill: white; }
@@ -451,6 +504,7 @@
             left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
         }
@@ -514,6 +568,10 @@
             background: var(--accent-gradient);
             transform: translateX(5px);
             color: white;
+        }
+
+        .wpp-modal-body button:active {
+            transform: translateX(3px);
         }
 
         @keyframes glassAppear {
@@ -678,7 +736,6 @@
         function setTheme(theme) {
             document.body.setAttribute('data-theme', theme);
             
-            // Update active buttons
             document.querySelectorAll('.theme-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.getAttribute('data-theme') === theme) {
@@ -686,11 +743,9 @@
                 }
             });
 
-            // Save preference
             localStorage.setItem('theme', theme);
         }
 
-        // Load saved theme
         const savedTheme = localStorage.getItem('theme') || 'dark';
         setTheme(savedTheme);
 
@@ -712,18 +767,15 @@
             }
         }
 
-        // Auto-hide after 2.5 seconds
         setTimeout(() => {
             hideWelcomeScreen(true);
         }, 2500);
 
-        // Hide on button click
         document.getElementById('exploreBtn').addEventListener('click', function(e) {
             e.preventDefault();
             hideWelcomeScreen(true);
         });
 
-        // Hide on ESC key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 const welcomeScreen = document.getElementById('welcomeScreen');
@@ -733,67 +785,78 @@
             }
         });
 
-        // ===== FUNDO DINÂMICO COM PARTÍCULAS =====
+        // ===== FUNDO DINÂMICO (ULTRA OTIMIZADO) =====
         function createParticles() {
             const container = document.getElementById('particles');
+            const isMobile = window.innerWidth < 768;
             const motionMediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
             
-            if (motionMediaQuery.matches) {
-                // Criar fundo estático com menos partículas
-                container.style.background = 'radial-gradient(circle at 50% 50%, rgba(165,139,212,0.1), transparent 70%)';
+            // OTIMIZADO: Sem partículas em mobile ou se preferir reduzir movimento
+            if (isMobile || motionMediaQuery.matches) {
+                container.innerHTML = '';
                 return;
             }
             
-            const numberOfParticles = window.innerWidth < 768 ? 30 : 50;
+            const numberOfParticles = 25; // Reduzido para performance
             container.innerHTML = '';
             
             for (let i = 0; i < numberOfParticles; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                const size = Math.random() * 45 + 5;
+                const size = Math.random() * 30 + 5;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 
                 particle.style.left = `${Math.random() * 100}%`;
                 particle.style.top = `${Math.random() * 100}%`;
                 
-                const speed = 0.2 + Math.random() * 0.5;
-                particle.dataset.speed = speed;
-                
                 const layer = Math.floor(Math.random() * 3) + 1;
                 particle.classList.add(`particle-layer-${layer}`);
-                particle.dataset.layer = layer;
                 
-                particle.style.opacity = 0.3 + Math.random() * 0.5;
+                particle.style.opacity = 0.2 + Math.random() * 0.3;
                 
                 container.appendChild(particle);
             }
         }
 
-        // ===== ANIMAÇÃO DAS PARTÍCULAS COM SCROLL =====
-        function animateParticles() {
+        // ===== ANIMAÇÃO DAS PARTÍCULAS COM THROTTLE =====
+        function initParticleAnimation() {
+            const isMobile = window.innerWidth < 768;
             const motionMediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-            if (motionMediaQuery.matches) return;
+            
+            if (isMobile || motionMediaQuery.matches) return;
             
             const particles = document.querySelectorAll('.particle');
-            const scrollY = window.scrollY;
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollProgress = maxScroll > 0 ? scrollY / maxScroll : 0;
+            if (particles.length === 0) return;
             
-            particles.forEach(particle => {
-                const speed = parseFloat(particle.dataset.speed) || 0.3;
-                const layer = parseInt(particle.dataset.layer) || 1;
+            let ticking = false;
+            let lastScrollY = 0;
+            
+            window.addEventListener('scroll', function() {
+                lastScrollY = window.scrollY;
                 
-                let moveY = scrollProgress * 200 * speed * (layer / 2);
-                particle.style.transform = `translateY(${moveY}px)`;
-            });
-            
-            requestAnimationFrame(animateParticles);
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                        const scrollProgress = maxScroll > 0 ? lastScrollY / maxScroll : 0;
+                        
+                        particles.forEach(particle => {
+                            const speed = 0.2;
+                            const moveY = scrollProgress * 100 * speed;
+                            particle.style.transform = `translateY(${moveY}px)`;
+                        });
+                        
+                        ticking = false;
+                    });
+                    
+                    ticking = true;
+                }
+            }, { passive: true });
         }
 
         // ===== WHATSAPP FUNCTIONS =====
-        const phoneNumber = "5589981264127"; // Substitua pelo seu número de telefone com código do país
+        const phoneNumber = "5589981264127";
 
         function toggleWppModal() {
             const modal = document.getElementById("wppModal");
@@ -811,7 +874,6 @@
             toggleWppModal();
         }
 
-        // ===== FECHA MODAL AO CLICAR FORA =====
         window.onclick = function(event) {
             const modal = document.getElementById("wppModal");
             if (event.target == modal) {
@@ -819,7 +881,6 @@
             }
         }
 
-        // ===== FECHA MODAL COM TECLA ESC =====
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 const modal = document.getElementById("wppModal");
@@ -832,13 +893,13 @@
         // ===== INICIALIZAÇÃO =====
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
-            animateParticles();
+            initParticleAnimation();
         });
 
         // ===== REVELAR ELEMENTOS COM SCROLL =====
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.05,
+            rootMargin: '0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -846,6 +907,7 @@
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
